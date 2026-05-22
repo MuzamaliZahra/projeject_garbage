@@ -1,0 +1,45 @@
+.login-page {
+  background: #b1d1c1;
+  min-height: 100vh;
+  padding: 40px 15px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: #f5f5f5;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.title {
+  font-weight: 700;
+  color: #1b2a41;
+}
+
+.subtitle {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+  height: 45px;
+  text-align: center;
+}
+
+
+.login-btn {
+  background: #049741;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  height: 45px;
+}
+
+.login-btn:hover {
+  background: #0c664d;
+}

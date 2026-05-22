@@ -1,0 +1,188 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.ad-page {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+/* ── Body ── */
+.ad-body {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ── Page Title ── */
+.ad-page-title {
+  margin-bottom: 1.5rem;
+}
+
+.ad-page-title h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.ad-page-title p {
+  font-size: 14px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* ── Card ── */
+.ad-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e8e8e8;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Avatar ── */
+.ad-avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.ad-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #1aaa6b;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.ad-avatar-label {
+  font-size: 13px;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ── Alerts ── */
+.ad-alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.ad-alert-error {
+  background: #fdecea;
+  color: #b71c1c;
+  border: 1px solid #f5c6cb;
+}
+
+.ad-alert-success {
+  background: #e8f5e9;
+  color: #1b5e20;
+  border: 1px solid #c3e6cb;
+}
+
+/* ── Form ── */
+.ad-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ad-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.ad-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.ad-form-group input {
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ad-form-group input:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26, 170, 107, 0.12);
+}
+
+.ad-form-group input::placeholder {
+  color: #bbb;
+}
+
+/* ── Buttons ── */
+.ad-btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+
+.ad-btn-cancel {
+  flex: 1;
+  height: 46px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ad-btn-cancel:hover {
+  background: #e2e2e2;
+}
+
+.ad-btn-submit {
+  flex: 2;
+  height: 46px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ad-btn-submit:hover {
+  background: #148f59;
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .ad-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-card {
+    padding: 1.25rem;
+  }
+}

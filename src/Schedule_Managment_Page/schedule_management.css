@@ -1,0 +1,465 @@
+/* ── schedule_management.css ── */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── PAGE ── */
+.ms_page {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+}
+
+/* ── TABLE CARD ── */
+.ms_card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e8f5e9;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+/* ── TABLE ── */
+.ms_table { width: 100%; border-collapse: collapse; }
+
+.ms_table thead tr {
+  background: #f8f9fa;
+  border-bottom: 2px solid #eee;
+}
+
+.ms_table th {
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  text-align: left;
+}
+
+.ms_table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+.ms_table tbody tr:hover    { background: #fafafa; }
+.ms_table tbody tr:last-child { border-bottom: none; }
+
+.ms_table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #333;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── ID BADGE ── */
+.ms_id_badge {
+  background: #e8f5e9;
+  color: #1b5e20;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── DAY BADGE ── */
+.ms_day_badge {
+  background: #f3e8ff;
+  color: #7c3aed;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── TIME BADGE ── */
+.ms_time_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #e8f0fe;
+  color: #1a56db;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── STATUS BADGE ── */
+.ms_status_badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.ms_badge_active   { background: #e8f5e9; color: #1b5e20; }
+.ms_badge_inactive { background: #f3f4f6; color: #6b7280; }
+
+/* ── ROUTE CELL ── */
+.ms_route_cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ms_route_name {
+  font-size: 14px;
+  color: #0d9488;
+  font-weight: 500;
+}
+
+.ms_btn_route {
+  background: #e8f0fe;
+  color: #1a56db;
+  border: 1px solid #bfdbfe;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.ms_btn_route:hover { background: #dbeafe; }
+
+/* ── ACTION BUTTONS ── */
+.ms_action_btns { display: flex; gap: 8px; }
+
+.ms_btn_edit {
+  background: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffe082;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ms_btn_edit:hover { background: #fff3cd; }
+
+.ms_btn_delete {
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ms_btn_delete:hover { background: #ffebee; }
+
+/* ── LOADING / EMPTY ── */
+.ms_loading { padding: 3rem; text-align: center; color: #888; font-size: 14px; }
+
+.ms_empty       { padding: 3rem; text-align: center; }
+.ms_empty_icon  { font-size: 40px; margin-bottom: 12px; }
+.ms_empty p     { font-size: 16px; font-weight: 600; color: #444; }
+.ms_empty span  { font-size: 13px; color: #999; }
+
+/* ── COUNT ── */
+.ms_count { text-align: right; font-size: 13px; color: #999; margin-top: 10px; }
+
+/* ── MODAL OVERLAY ── */
+.ms_modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ── MODAL ── */
+.ms_modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 460px;
+  margin: 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.ms_modal_sm { max-width: 360px; }
+
+/* ── MODAL HEADER ── */
+.ms_modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.ms_modal_header h3 { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+
+.ms_modal_close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #999;
+  cursor: pointer;
+}
+.ms_modal_close:hover { color: #333; }
+
+/* ── MODAL BANNER ── */
+.ms_modal_banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1.5rem 0;
+  gap: 6px;
+}
+.ms_modal_banner_icon { font-size: 48px; }
+.ms_modal_banner_id   { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+.ms_modal_banner_sub  { font-size: 12px; color: #888; font-weight: 600; }
+
+/* ── MODAL BODY ── */
+.ms_modal_body {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── FORM GROUPS ── */
+.ms_form_group { display: flex; flex-direction: column; gap: 6px; }
+
+.ms_form_group label { font-size: 12px; font-weight: 600; color: #555; }
+
+.ms_form_group input,
+.ms_form_group select {
+  height: 42px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #1a1a1a;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  width: 100%;
+}
+.ms_form_group input:focus,
+.ms_form_group select:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26,170,107,0.1);
+}
+
+.ms_input_readonly {
+  background: #f5f5f5 !important;
+  cursor: not-allowed !important;
+  color: #888 !important;
+}
+
+.ms_day_hint {
+  display: inline-block;
+  font-size: 12px;
+  color: #7c3aed;
+  background: #f3e8ff;
+  border: 1px solid #e9d5ff;
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+/* ── ROUTE LINK ── */
+.ms_route_link {
+  background: #e8f0fe;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 9px 14px;
+  text-align: center;
+  font-size: 13px;
+  color: #1a56db;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ms_route_link:hover { background: #dbeafe; }
+
+/* ── MODAL FOOTER ── */
+.ms_modal_footer {
+  display: flex;
+  gap: 10px;
+  padding: 1rem 1.5rem 1.25rem;
+}
+
+.ms_btn_cancel {
+  flex: 1;
+  height: 42px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ms_btn_cancel:hover { background: #e2e2e2; }
+
+.ms_btn_save {
+  flex: 2;
+  height: 42px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ms_btn_save:hover { background: #148f59; }
+
+/* ── DELETE MODAL BODY ── */
+.ms_delete_body {
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ms_delete_icon        { font-size: 40px; margin-bottom: 6px; }
+.ms_delete_body p      { font-size: 15px; color: #444; }
+.ms_delete_body strong { font-size: 16px; color: #1a1a1a; }
+.ms_delete_body span   { font-size: 13px; color: #999; }
+.ms_delete_warning     { color: #e53935 !important; font-weight: 600 !important; }
+
+.ms_btn_confirm_delete {
+  flex: 2;
+  height: 42px;
+  background: #e53935;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ms_btn_confirm_delete:hover { background: #c62828; }
+
+/* ── Add these to your existing schedule_management.css ── */
+
+/* Day pills in edit modal */
+.ms_day_pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.ms_day_pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s ease;
+  min-width: 52px;
+}
+
+.ms_day_pill:hover {
+  border-color: #4caf50;
+  background: #f0faf0;
+}
+
+.ms_day_pill.selected {
+  border-color: #4caf50;
+  background: #4caf50;
+  color: #fff;
+}
+
+.ms_day_short {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.ms_day_full {
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.ms_selected_day_hint {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Availability status under time input */
+.ms_availability {
+  margin-top: 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.ms_availability.checking {
+  background: #fff8e1;
+  color: #f57f17;
+}
+
+.ms_availability.ok {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.ms_availability.conflict {
+  background: #fdecea;
+  color: #c62828;
+}
+
+/* Conflict banner */
+.ms_conflict_banner {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #fdecea;
+  border: 1px solid #ef9a9a;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 10px;
+}
+
+.ms_conflict_icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.ms_conflict_text strong {
+  display: block;
+  color: #c62828;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.ms_conflict_text p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .ms_stats_row  { grid-template-columns: 1fr 1fr; }
+  .ms_page_header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .ms_action_btns { flex-direction: column; }
+  .ms_table th:nth-child(3),
+  .ms_table td:nth-child(3) { display: none; }
+}
+
+@media (max-width: 480px) {
+  .ms_stats_row { grid-template-columns: 1fr; }
+}

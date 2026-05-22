@@ -1,0 +1,154 @@
+/* =========================
+   GLOBAL SAFETY RESET
+   ========================= */
+.tracking_page * {
+  box-sizing: border-box;
+}
+
+.tracking_page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+.tracking_header {
+  width: 100%;
+  background: linear-gradient(135deg, #0f7b5b, #0b5e45);
+  padding: 18px 0;
+}
+
+.tracking_header h2 {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* =========================
+   MAIN CONTAINER (KEY FIX)
+   ========================= */
+.tracking_container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;   /* ← THIS CENTERS EVERYTHING */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* =========================
+   TITLES
+   ========================= */
+.tracking_container h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.tracking_subtitle {
+  color: #555;
+  font-size: 15px;
+  margin-top: -15px;
+}
+
+/* =========================
+   CARD
+   ========================= */
+.tracking_card {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.tracking_card h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #0f7b5b;
+}
+
+/* =========================
+   TRUCK ROW (FLEX FIX)
+   ========================= */
+.truck_row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  background: #f7faf9;
+  border-left: 5px solid #0f7b5b;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.truck_row strong {
+  font-size: 16px;
+}
+
+.truck_row p {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* =========================
+   STATUS RIGHT SIDE
+   ========================= */
+.truck_status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.active {
+  background-color: #d9f5e6;
+  color: #0f7b5b;
+}
+
+.truck_status small {
+  font-size: 12px;
+  color: #333;
+}
+
+/* =========================
+   MAP
+   ========================= */
+.map_box {
+  height: 280px;
+  background: #e3e8ee;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #555;
+}
+
+/* =========================
+   MOBILE FIX
+   ========================= */
+@media (max-width: 768px) {
+  .truck_row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .truck_status {
+    align-items: flex-start;
+  }
+}

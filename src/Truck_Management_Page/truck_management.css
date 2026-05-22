@@ -1,0 +1,213 @@
+
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+
+
+
+ .tm_page{
+    min-height: 100vh;
+    background-color: #f4f6f8;
+    font-family: 'Segoe UI' , sans-serif; 
+}
+
+/* ── ID Badge ── */
+.id_badge {
+  background: #e8f5e9;
+  color: #1b5e20;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tm_driver_cell { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.tm_driver_avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2f7be8;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
+.tm_driver_name { 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: #1a1a1a; 
+}
+
+.tm_driver_id { 
+    font-size: 12px; 
+    color: #888; 
+    margin-top: 2px; 
+}
+
+
+
+
+/* ── Count ── */
+.tm_count {
+     text-align: right; 
+     font-size: 13px; 
+     color: #999; 
+     margin-top: 10px; 
+    }
+
+    /* ── Modal Overlay ── */
+.tm_modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.tm_modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 460px;
+  margin: 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+
+
+.tm_modal_sm { max-width: 360px; }
+
+/* ── Modal Header ── */
+.tm_modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.tm_modal_header h3 { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+.tm_modal_close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #999;
+  cursor: pointer;
+}
+
+.tm_modal_close:hover { color: #333; }
+
+/* ── Modal Truck Icon ── */
+.tm_modal_truck_icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1.5rem 0;
+  gap: 6px;
+}
+.tm_modal_icon { font-size: 48px; }
+.tm_modal_truck_icon span { font-size: 12px; color: #888; font-weight: 600; }
+
+
+/* ── Modal Body ── */
+.tm_modal_bodyy { padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.tm_form_group { display: flex; flex-direction: column; gap: 6px; }
+.tm_form_group label { font-size: 12px; font-weight: 600; color: #555; }
+.tm_form_group input,
+.tm_form_group select {
+  height: 42px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #1a1a1a;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+
+.tm_form_group input:focus,
+.tm_form_group select:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26,170,107,0.1);
+}
+
+/* ── Modal Footer ── */
+.tm_modal_footer {
+  display: flex;
+  gap: 10px;
+  padding: 1rem 1.5rem 1.25rem;
+}
+
+.tm_btn_cancel {
+  flex: 1;
+  height: 42px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tm_btn_cancel:hover { background: #e2e2e2; }
+.tm_btn_save {
+  flex: 2;
+  height: 42px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tm_btn_save:hover { background: #148f59; }
+
+/* ── Delete Modal ── */
+.tm_delete_body {
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tm_delete_icon { font-size: 40px; margin-bottom: 6px; }
+.tm_delete_body p { font-size: 15px; color: #444; }
+.tm_delete_body strong { font-size: 16px; color: #1a1a1a; }
+.tm_delete_body span { font-size: 13px; color: #999; }
+.tm_btn_confirm_delete {
+  flex: 2;
+  height: 42px;
+  background: #e53935;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tm_btn_confirm_delete:hover { background: #c62828; }
+
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .tm_stats_row { grid-template-columns: 1fr 1fr; }
+  .tm_page_header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tm_table th:nth-child(4),
+  .tm_-table td:nth-child(4) { display: none; }
+}
+@media (max-width: 480px) {
+  .tm_stats_row { grid-template-columns: 1fr; }
+}

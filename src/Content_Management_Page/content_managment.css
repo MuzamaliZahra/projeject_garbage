@@ -1,0 +1,389 @@
+/* ── content_managment.css ── */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── CARD ── */
+.mc_card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e8e8e8;
+  /*overflow: hidden;*/
+   overflow-x: auto;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+/* ── TABLE ── */
+.mc_table { width: 100%; border-collapse: collapse; }
+
+.mc_table thead tr { background: #f8f9fa; border-bottom: 2px solid #eee; }
+
+.mc_table th {
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  text-align: left;
+}
+
+.mc_table tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
+.mc_table tbody tr:hover      { background: #fafafa; }
+.mc_table tbody tr:last-child { border-bottom: none; }
+
+.mc_table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #333;
+  vertical-align: middle;
+  position: relative;
+  /*z-index: 1;*/
+}
+
+/* ── TABLE CELLS ── */
+.mc_id_badge {
+  background: #e8f5e9;
+  color: #1b5e20;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.mc_thumb {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.mc_no_image {
+  width: 54px;
+  height: 54px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #999;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+.mc_title_text { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.mc_desc_text  { font-size: 13px; color: #666; line-height: 1.4; }
+
+/* ── TYPE BADGES ── */
+.mc_type_badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── these fix the mac_ vs mc_ mismatch in your JSX ── */
+.mac_type_badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mc_type_green,  .mac_type_green   { background: #e8f5e9; color: #1b5e20; }
+.mc_type_orange, .mac_type_orange  { background: #fff3e0; color: #e65100; }
+.mc_type_blue,   .mac_type_blue    { background: #e8f0fe; color: #1a56db; }
+.mc_type_purple, .mac_type_purple  { background: #f3e8ff; color: #7c3aed; }
+.mc_type_default,.mac_type_default { background: #f3f4f6; color: #555;    }
+
+/* ── ACTION BUTTONS ── */
+/* these fix the mac_ vs mc_ mismatch in your JSX */
+.mc_action_btns,
+.mac_action_btns { display: flex; gap: 8px; }
+
+.mc_btn_edit,
+.mac_btn_edit {
+  background: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffe082;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mc_btn_edit:hover,
+.mac_btn_edit:hover { background: #fff3cd; }
+
+.mc_btn_delete,
+.mac_btn_delete {
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mc_btn_delete:hover,
+.mac_btn_delete:hover { background: #ffebee; }
+
+/* ── LOADING / EMPTY ── */
+.mc_loading { padding: 3rem; text-align: center; color: #888; font-size: 14px; }
+
+.mc_empty      { padding: 3rem; text-align: center; }
+.mc_empty_icon { font-size: 40px; margin-bottom: 12px; }
+.mc_empty p    { font-size: 16px; font-weight: 600; color: #444; }
+.mc_empty span { font-size: 13px; color: #999; }
+
+/* ── COUNT ── */
+.mc_count { text-align: right; font-size: 13px; color: #999; margin-top: 10px; }
+
+/* ── MODAL OVERLAY ── */
+.mc_modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ── MODAL ── */
+.mc_modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.mc_modal_sm { max-width: 360px; }
+
+/* ── MODAL HEADER ── */
+.mc_modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+}
+
+.mc_modal_header h3 { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+
+.mc_modal_close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #999;
+  cursor: pointer;
+}
+.mc_modal_close:hover { color: #333; }
+
+/* ── MODAL BANNER ── */
+.mc_modal_banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 14px 1.5rem;
+}
+
+.mc_modal_banner_icon { font-size: 30px; }
+.mc_modal_banner_id   { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+.mc_modal_banner_sub  { font-size: 12px; color: #888; margin-top: 2px; }
+
+/* ── MODAL BODY ── */
+.mc_modal_body {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── FORM GROUPS ── */
+.mc_form_group { display: flex; flex-direction: column; gap: 6px; }
+
+.mc_form_group label { font-size: 12px; font-weight: 600; color: #555; }
+
+.mc_form_group input,
+.mc_form_group select {
+  height: 42px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #1a1a1a;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  width: 100%;
+}
+
+.mc_form_group textarea {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #1a1a1a;
+  outline: none;
+  background: #fff;
+  font-family: inherit;
+  width: 100%;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+
+.mc_form_group input:focus,
+.mc_form_group select:focus,
+.mc_form_group textarea:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26,170,107,0.1);
+}
+
+/* ── IMAGE UPLOAD ── */
+.mc_image_upload_area {
+  border: 2px dashed #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+.mc_image_upload_area:hover { border-color: #1aaa6b; }
+
+.mc_image_upload_label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.mc_upload_icon { font-size: 28px; }
+.mc_upload_text { font-size: 13px; font-weight: 600; color: #555; }
+
+.mc_image_preview_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem;
+}
+
+/* fix mac_ class used in your JSX for image preview */
+.mac_image_preview,
+.mc_image_preview {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.mc_image_remove_btn {
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mc_image_remove_btn:hover { background: #ffebee; }
+
+/* ── MODAL FOOTER ── */
+.mc_modal_footer {
+  display: flex;
+  gap: 10px;
+  padding: 1rem 1.5rem 1.25rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.mc_btn_cancel {
+  flex: 1;
+  height: 42px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mc_btn_cancel:hover { background: #e2e2e2; }
+
+.mc_btn_save {
+  flex: 2;
+  height: 42px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mc_btn_save:hover { background: #148f59; }
+
+/* ── DELETE MODAL ── */
+.mc_delete_body {
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mc_delete_icon        { font-size: 40px; margin-bottom: 6px; }
+.mc_delete_body p      { font-size: 15px; color: #444; }
+.mc_delete_body strong { font-size: 16px; color: #1a1a1a; }
+.mc_delete_body span   { font-size: 13px; color: #999; }
+.mc_delete_warning     { color: #e53935 !important; font-weight: 600 !important; }
+
+.mc_btn_confirm_delete {
+  flex: 2;
+  height: 42px;
+  background: #e53935;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.mc_btn_confirm_delete:hover { background: #c62828; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .mc_stats_row   { grid-template-columns: 1fr 1fr; }
+  .mc_page_header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .mc_table th:nth-child(5),
+  .mc_table td:nth-child(5) { display: none; }
+}
+@media (max-width: 480px) {
+  .mc_stats_row { grid-template-columns: 1fr; }
+}

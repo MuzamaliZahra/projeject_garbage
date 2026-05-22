@@ -1,0 +1,288 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.md-page {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+/* ── Card ── */
+.md-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+
+/* ── Table ── */
+.md-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.md-table thead tr {
+  background: #f8f9fa;
+  border-bottom: 2px solid #eee;
+}
+.md-table th {
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  text-align: left;
+}
+.md-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+.md-table tbody tr:hover { background: #fafafa; }
+.md-table tbody tr:last-child { border-bottom: none; }
+.md-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* ── Driver Cell ── */
+.md-driver-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.md-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1aaa6b;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.md-avatar.large {
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  margin: 0 auto 8px;
+}
+
+/* ── ID Badge ── */
+.md-id-badge {
+  background: #e8f5e9;
+  color: #1b5e20;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ── Action Buttons ── */
+.md-action-btns {
+  display: flex;
+  gap: 8px;
+}
+.md-btn-edit {
+  background: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffe082;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.md-btn-edit:hover { background: #fff3cd; }
+.md-btn-delete {
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.md-btn-delete:hover { background: #ffebee; }
+
+/* ── Loading / Empty ── */
+.md-loading {
+  padding: 3rem;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
+.md-empty {
+  padding: 3rem;
+  text-align: center;
+}
+.md-empty-icon { font-size: 40px; margin-bottom: 12px; }
+.md-empty p { font-size: 16px; font-weight: 600; color: #444; }
+.md-empty span { font-size: 13px; color: #999; }
+
+/* ── Count ── */
+.md-count {
+  text-align: right;
+  font-size: 13px;
+  color: #999;
+  margin-top: 10px;
+}
+
+/* ── Modal Overlay ── */
+.md-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.md-modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  margin: 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+.md-modal-sm { max-width: 360px; }
+
+/* ── Modal Header ── */
+.md-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.md-modal-header h3 { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+.md-modal-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #999;
+  cursor: pointer;
+}
+.md-modal-close:hover { color: #333; }
+
+/* ── Modal Avatar ── */
+.md-modal-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1.5rem 0;
+  gap: 6px;
+}
+.md-modal-avatar span {
+  font-size: 12px;
+  color: #888;
+  font-weight: 600;
+}
+
+/* ── Modal Body ── */
+.md-modal-body {
+  padding: 1rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.md-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.md-form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+.md-form-group input {
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.md-form-group input:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26,170,107,0.1);
+}
+
+/* ── Modal Footer ── */
+.md-modal-footer {
+  display: flex;
+  gap: 10px;
+  padding: 1rem 1.5rem 1.25rem;
+}
+.md-btn-cancel {
+  flex: 1;
+  height: 42px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.md-btn-cancel:hover { background: #e2e2e2; }
+.md-btn-save {
+  flex: 2;
+  height: 42px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.md-btn-save:hover { background: #148f59; }
+
+/* ── Delete Modal ── */
+.md-delete-body {
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.md-delete-icon { font-size: 40px; margin-bottom: 6px; }
+.md-delete-body p { font-size: 15px; color: #444; }
+.md-delete-body strong { font-size: 16px; color: #1a1a1a; }
+.md-delete-body span { font-size: 13px; color: #999; }
+.md-btn-confirm-delete {
+  flex: 2;
+  height: 42px;
+  background: #e53935;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.md-btn-confirm-delete:hover { background: #c62828; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .md-table th:nth-child(3),
+  .md-table td:nth-child(3) { display: none; }
+  .md-stats-row { grid-template-columns: 1fr 1fr; }
+  .md-modal-body { grid-template-columns: 1fr; }
+  .md-page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+@media (max-width: 480px) {
+  .md-table th:nth-child(4),
+  .md-table td:nth-child(4) { display: none; }
+  .md-stats-row { grid-template-columns: 1fr; }
+}

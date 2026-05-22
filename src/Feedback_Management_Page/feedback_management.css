@@ -1,0 +1,57 @@
+/* Filter row */
+.af_filter_row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.af_rating_filter {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  height: 44px;
+}
+
+/* Stars */
+.af_stars {
+  display: flex;
+  gap: 2px;
+}
+
+.af_star {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.af_star.filled {
+  color: #f5b301;
+}
+
+.af_star.empty {
+  color: #d1d5db;
+}
+
+/* Rating number */
+.af_rating_num {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+  display: block;
+}
+
+/* Comment cell */
+.af_comment_cell {
+  max-width: 250px;
+  word-break: break-word;
+  font-size: 14px;
+}
+
+.af_no_comment {
+  color: #9ca3af;
+  font-style: italic;
+}

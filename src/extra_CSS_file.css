@@ -1,0 +1,244 @@
+
+/*body*/
+
+.body{
+    max-width: 1100px;
+    margin:0 auto;
+    padding: 2rem 1rem;
+}
+
+
+.page_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.page_header h2{
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.page_header p {
+    font-size: 14px;
+    color: #777;
+    margin-top: 4px;
+}
+
+.add_btn{
+    background: #1aaa6b;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.add_btn:hover {background: #148f59;}
+
+
+
+.status_row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.status_card { border-radius: 12px; padding: 1rem 1.25rem; color: #fff; }
+.status_card.green  { background: #1aaa6b; }
+.status_card.orange { background: #e8872a; }
+.status_card.blue   { background: #2f7be8; }
+.status_card.yellow { background: #d4a017; }
+.status_num { font-size: 26px; font-weight: 700; }
+.status_label { font-size: 13px; opacity: 0.9; margin-top: 4px; }
+
+
+
+/*Alert*/
+.alert{
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.alert_error{
+    background: #fdecea;
+    color: #b71c1c;
+    border: 1px solid #f5c6cb;
+}
+
+.alert_success{
+    background: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #c3e6cb;
+}
+
+
+/*search bar*/
+.search_bar{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin-bottom: 1.25rem;
+}
+
+.search_icon{
+    font-size: 16px;
+}
+
+.search_bar input{
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #1a1a1a;
+    background: transparent;
+}
+
+.clear_btn{
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.clear_btn:hover{color: #333;}
+
+
+/* ── Loading / Empty ── */
+.loading { 
+    padding: 3rem; 
+    text-align: center; 
+    color: #888; 
+    font-size: 14px; 
+}
+
+.empty { 
+    padding: 3rem; 
+    text-align: center; 
+}
+
+.empty-icon { 
+    font-size: 40px; 
+    margin-bottom: 12px;
+ }
+
+.empty p { 
+    font-size: 16px; 
+    font-weight: 600; 
+    color: #444; 
+}
+
+.empty span {
+     font-size: 13px; 
+     color: #999;
+ }
+
+
+/* ── Card ── */
+ .card{
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e8f5e9;
+    overflow: hidden;
+    box-shadow: 0 2px 12px #000000;
+ }
+
+
+ /* ── Table ── */
+.table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+.table thead tr { 
+    background: #f8f9fa; 
+    border-bottom: 2px solid #eee; 
+}
+
+.table th {
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  text-align: left;
+}
+
+
+.table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+
+.table tbody tr:hover { 
+    background: #fafafa;
+ }
+
+.table tbody tr:last-child { 
+    border-bottom: none;
+ }
+
+.table td { 
+    padding: 14px 16px; 
+    font-size: 14px; 
+    color: #333;
+ }
+
+/*  Icon Cell  */
+.icon_cell { 
+    font-size: 28px;
+ }
+
+
+ 
+/* ── Action Buttons ── */
+.action_btns { 
+    display: flex; 
+    gap: 8px; 
+}
+
+.btn_edit {
+  background: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffe082;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn_edit:hover { 
+    background: #fff3cd; 
+}
+
+.btn_delete {
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn_delete:hover { 
+    background: #ffebee; 
+}
+
+
+

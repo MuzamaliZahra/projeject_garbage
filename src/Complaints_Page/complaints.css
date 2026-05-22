@@ -1,0 +1,143 @@
+/* ISOLATED PAGE WRAPPER */
+.complaint_page {
+  all: initial;                 /* resets ALL inherited styles */
+  display: block;
+  width: 100%;
+  font-family: "Segoe UI", sans-serif;
+  background: #f6f8fb;
+}
+
+.complaint_page_container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  display: block;
+}
+
+/* Header */
+.complaint_page_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Buttons */
+.submit_button {
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.complaint-button-outline {
+  background: transparent;
+  border: 1px solid #0f766e;
+  color: #0f766e;
+  padding: 10px 18px;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+/* Card */
+.new_complaint {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 40px; /* 🔴 forces separation */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  display: block;
+  position: static;
+}
+
+/* Form */
+.new_complaint_part {
+  margin-bottom: 16px;
+}
+
+.new_complaint_part label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.new_complaint_part input,
+.new_complaint_part select,
+.new_complaint_part textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.complaint_image {
+  border: 2px dashed #d1d5db;
+  padding: 25px;
+  text-align: center;
+  border-radius: 8px;
+  color: #6b7280;
+}
+
+/* Table */
+.complaints {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.complaints h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 10px;
+}
+
+
+.complaint_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.complaint_table th,
+.complaint_table td {
+  padding: 14px;
+  text-align: left;
+}
+
+.complaint_table thead {
+  background: #f3f4f6;
+}
+
+.complaint_table tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Status */
+.cm-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.complaint_pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.complaint_progress {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.complaint_completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+

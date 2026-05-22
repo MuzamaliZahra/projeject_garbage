@@ -1,0 +1,355 @@
+*{ box-sizing: border-box; margin: 0; padding: 0;}
+
+.bm_page{
+    min-height: 100vh;
+    background-color: #f4f6f8;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/*qr badge*/
+.bm_qr_badge{
+    background: #e8f0fe;
+    color: #1a56db;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/*location cell*/
+.bm_location_name { 
+    font-size: 14px; 
+    font-weight: 500; 
+    color: #1a1a1a; 
+}
+
+/* ── Route Cell ── */
+.bm_route_name { 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: #1a1a1a; 
+}
+
+.bm_route_id   { 
+    font-size: 12px; 
+    color: #888; 
+    margin-top: 2px;
+ }
+
+ /*status badge*/
+ .bm_status_badge{
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+ }
+
+ .bm_status_badge.empty  { 
+    background: #e8f5e9; 
+    color: #1b5e20; 
+}
+
+.bm_status_badge.filled { 
+    background: #fdecea; 
+    color: #b71c1c; 
+}
+
+/* ── Action Buttons ── */
+.bm_action_btns { 
+    display: flex;
+    gap: 8px; 
+}
+
+.bm_btn_edit {
+  background: #fff8e1;
+  color: #f57f17;
+  border: 1px solid #ffe082;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+
+.bm_btn_edit:hover { 
+    background: #fff3cd; 
+}
+
+.bm_btn_delete {
+  background: #fdecea;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.bm_btn_delete:hover { 
+    background: #ffebee;
+ }
+
+/*Modal*/
+.bm_modal_overlay{
+    position: fixed;
+    inset: 0;
+ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.bm_modal{
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    margin: 1rem;
+    box-shadow: 0 8px 32px #000000;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.bm_modal_sm {
+    max-width: 360px;
+}
+
+/* ── Modal Header ── */
+.bm_modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+}
+
+.bm_modal_header h3{
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.bm_modal_close{
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #999;
+    cursor: pointer;
+}
+
+.bm_modal_close:hover{
+    color: #333;
+}
+
+/*Modal bin icon*/
+.bm_modal_bin_icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.25rem 1.5rem 0;
+    gap:6px;
+}
+ 
+.bm_modal_icon{
+    font-size: 48px;
+}
+
+.bm_modal_bin_icon span{
+    font-size: 12px;
+    color: #888;
+    font-weight: 600;
+}
+
+/* Modal body*/
+.bm_modal_body{
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bm_modal_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem; 
+}
+
+.bm_form_group{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bm_form_group label{
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+}
+
+.bm_form_group input,
+.bm_form_group select{
+    height: 42px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #1a1a1a;
+    outline: none;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.bm_form_group input:focus,
+.bm_form_group select:focus {
+    border-color: #1aaa6b;
+    box-shadow: 0 0 0 3px #000000;
+}
+
+
+/* ── Modal Footer ── */
+.bm_modal_footer{
+    display: flex;
+    gap: 10px;
+    padding: 1rem 1.5rem 1.25rem;
+}
+
+.bm_btn_cancel{
+    flex: 1;
+    height: 42px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bm_btn_cancel:hover{
+    background: #e2e2e2;
+}
+
+.bm_btn_save{
+    flex: 2;
+    height: 42px;
+    background:  #1aaa6b;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bm_btn_save:hover{
+    background: #148f59;
+}
+
+/*Delete modal*/
+
+.bm_delete_body{
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.bm_delete_icon{
+    font-size: 40px;
+    margin-bottom: 6px;
+}
+
+.bm_delete_body p{
+    font-size: 15px;
+    color: #444;
+}
+
+.bm_delete_body strong{
+    font-size: 16px;
+    color: #1a1a1a;
+}
+
+.bm_delete_body span{
+    font-size: 13px;
+    color: #999;
+}
+
+.bm_btn_confirm_delete{
+    flex:2;
+    height: 42px;
+    background: #e53935;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+ 
+.bm_btn_confirm_delete:hover{
+    background: #c62828;
+}
+
+
+/* Last Collection Cell */
+.bm_collection_cell {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.bm_collection_date {
+    font-size: 13px;
+    color: #111827;
+    font-weight: 500;
+}
+
+.bm_collection_time {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.bm_no_collection {
+    font-size: 12px;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Last Collection section in edit modal */
+.bm_collection_section {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 16px;
+}
+
+.bm_collection_label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #166534;
+    margin-bottom: 10px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bm_stats_row  { grid-template-columns: 1fr 1fr; }
+  .bm_page_header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .bm_modal_row  { grid-template-columns: 1fr; }
+  .bm_table th:nth-child(4),
+  .bm_table td:nth-child(4) { display: none; }
+}
+@media (max-width: 480px) {
+  .bm_stats_row { grid-template-columns: 1fr; }
+}

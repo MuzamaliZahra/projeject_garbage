@@ -1,0 +1,163 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.at-page {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ── Body ── */
+.at-body {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ── Page Title ── */
+.at-page-title { margin-bottom: 1.5rem; }
+.at-page-title h2 { font-size: 24px; font-weight: 700; color: #1a1a1a; }
+.at-page-title p { font-size: 14px; color: #777; margin-top: 4px; }
+
+/* ── Card ── */
+.at-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e8e8e8;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* ── Truck Icon ── */
+.at-truck-icon-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.at-truck-icon { font-size: 52px; margin-bottom: 8px; }
+.at-truck-label { font-size: 13px; color: #888; font-weight: 500; }
+
+/* ── Alerts ── */
+.at-alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+.at-alert-error { background: #fdecea; color: #b71c1c; border: 1px solid #f5c6cb; }
+.at-alert-success { background: #e8f5e9; color: #1b5e20; border: 1px solid #c3e6cb; }
+
+/* ── Form ── */
+.at-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.at-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+.at-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+.at-form-group input,
+.at-form-group select {
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.at-form-group input:focus,
+.at-form-group select:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26,170,107,0.12);
+}
+.at-form-group input::placeholder { color: #bbb; }
+
+/* ── Loading / No Drivers ── */
+.at-loading-drivers {
+  padding: 12px;
+  font-size: 13px;
+  color: #888;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+.at-no-drivers {
+  padding: 12px 14px;
+  font-size: 13px;
+  color: #b71c1c;
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+}
+
+/* ── Driver Preview ── */
+.at-driver-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #e8f5e9;
+  border: 1px solid #c3e6cb;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+}
+.at-driver-preview-icon { font-size: 28px; }
+.at-driver-preview-name { font-size: 14px; font-weight: 600; color: #1b5e20; }
+.at-driver-preview-id { font-size: 12px; color: #388e3c; margin-top: 2px; }
+
+/* ── Buttons ── */
+.at-btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+.at-btn-cancel {
+  flex: 1;
+  height: 46px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.at-btn-cancel:hover { background: #e2e2e2; }
+.at-btn-submit {
+  flex: 2;
+  height: 46px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.at-btn-submit:hover { background: #148f59; }
+.at-btn-submit:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .at-form-row { grid-template-columns: 1fr; }
+  .at-stats-row { grid-template-columns: 1fr; }
+  .at-card { padding: 1.25rem; }
+}

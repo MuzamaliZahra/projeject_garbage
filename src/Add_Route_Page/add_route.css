@@ -1,0 +1,157 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.ar-page {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+/* ── Body ── */
+.ar-body {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ── Page Title ── */
+.ar-page-title { margin-bottom: 1.5rem; }
+.ar-page-title h2 { font-size: 24px; font-weight: 700; color: #1a1a1a; }
+.ar-page-title p { font-size: 14px; color: #777; margin-top: 4px; }
+
+
+/* ── Card ── */
+.ar-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e8e8e8;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* ── Card Icon ── */
+.ar-card-icon-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.ar-card-icon { font-size: 48px; margin-bottom: 8px; }
+.ar-card-label { font-size: 13px; color: #888; font-weight: 500; }
+
+/* ── Alerts ── */
+.ar-alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+.ar-alert-error { background: #fdecea; color: #b71c1c; border: 1px solid #f5c6cb; }
+.ar-alert-success { background: #e8f5e9; color: #1b5e20; border: 1px solid #c3e6cb; }
+
+/* ── Form ── */
+.ar-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.ar-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 0.5rem;
+}
+.ar-form-group label { font-size: 13px; font-weight: 600; color: #444; }
+.ar-form-group input,
+.ar-form-group select {
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.ar-form-group input:focus,
+.ar-form-group select:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26,170,107,0.12);
+}
+.ar-form-group input::placeholder { color: #bbb; }
+
+/* ── Loading Select ── */
+.ar-loading-select {
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 13px;
+  color: #999;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Preview Row ── */
+.ar-preview-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.ar-preview-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #e8f5e9;
+  border: 1px solid #c3e6cb;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.ar-preview-icon { font-size: 24px; }
+.ar-preview-title { font-size: 14px; font-weight: 600; color: #1b5e20; }
+.ar-preview-sub { font-size: 12px; color: #388e3c; margin-top: 2px; }
+
+/* ── Buttons ── */
+.ar-btn-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+.ar-btn-cancel {
+  flex: 1;
+  height: 46px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ar-btn-cancel:hover { background: #e2e2e2; }
+.ar-btn-submit {
+  flex: 2;
+  height: 46px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ar-btn-submit:hover { background: #148f59; }
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .ar-form-row { grid-template-columns: 1fr; }
+  .ar-stats-row { grid-template-columns: 1fr; }
+  .ar-preview-row { flex-direction: column; }
+  .ar-card { padding: 1.25rem; }
+}

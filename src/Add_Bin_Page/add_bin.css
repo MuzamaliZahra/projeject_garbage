@@ -1,0 +1,181 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.ab_page {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ── Body ── */
+.ab_body {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ── Page Title ── */
+.ab_page_title { margin-bottom: 1.5rem; }
+.ab_page_title h2 { font-size: 24px; font-weight: 700; color: #1a1a1a; }
+.ab_page_title p  { font-size: 14px; color: #777; margin-top: 4px; }
+
+/* ── Card ── */
+.ab_card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e8e8e8;
+  padding: 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* ── Avatar ── */
+.ab_avatar_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.ab_avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #1aaa6b;
+  color: #fff;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.ab_avatar_label { font-size: 13px; color: #888; font-weight: 500; }
+
+/* ── Alerts ── */
+.ab_alert {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+.ab_alert_error   { background: #fdecea; color: #b71c1c; border: 1px solid #f5c6cb; }
+.ab_alert_success { background: #e8f5e9; color: #1b5e20; border: 1px solid #c3e6cb; }
+
+/* ── Form ── */
+.ab_form_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.ab_form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+.ab_form_group label { font-size: 13px; font-weight: 600; color: #444; }
+.ab_form_group input,
+.ab_form_group select {
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ab_form_group input:focus,
+.ab_form_group select:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26,170,107,0.12);
+}
+.ab_form_group input::placeholder { color: #bbb; }
+
+/* ── Loading / No Data ── */
+.ab_loading {
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 13px;
+  color: #999;
+  display: flex;
+  align-items: center;
+}
+.ab_no_data {
+  padding: 12px 14px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #f57f17;
+  font-weight: 500;
+}
+
+/* ── Preview Card ── */
+.ab_preview {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #e8f5e9;
+  border: 1px solid #c3e6cb;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 1rem;
+}
+.ab_preview_icon    { font-size: 32px; flex-shrink: 0; }
+.ab_preview_details { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.ab_preview_row_item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.ab_preview_label { font-weight: 600; color: #555; min-width: 55px; }
+.ab_preview_value { color: #1b5e20; font-weight: 500; }
+.ab_preview_status        { font-weight: 600; }
+.ab_preview_status.empty  { color: #1aaa6b; }
+.ab_preview_status.filled { color: #e53935; }
+
+/* ── Buttons ── */
+.ab_btn_row {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+.ab_btn_cancel {
+  flex: 1;
+  height: 46px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ab_btn_cancel:hover { background: #e2e2e2; }
+.ab_btn_submit {
+  flex: 2;
+  height: 46px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ab_btn_submit:hover    { background: #148f59; }
+.ab_btn_submit:disabled { background: #aaa; cursor: not-allowed; }
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  .ab_form-row  { grid-template-columns: 1fr; }
+  .ab_stats-row { grid-template-columns: 1fr; }
+  .ab_card      { padding: 1.25rem; }
+  .ab_topbar    { padding: 12px 16px; }
+}

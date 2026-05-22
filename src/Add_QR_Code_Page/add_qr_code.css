@@ -1,0 +1,104 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.aq_page {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.aq_body { max-width: 680px; margin: 0 auto; padding: 2rem 1rem; }
+.aq_page_title { margin-bottom: 1.5rem; }
+.aq_page_title h2 { font-size: 24px; font-weight: 700; color: #1a1a1a; }
+.aq_page_title p  { font-size: 14px; color: #777; margin-top: 4px; }
+.aq_card {
+  background: #fff; border-radius: 14px; border: 1px solid #e8e8e8;
+  padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.aq_avatar_wrap {
+  display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem;
+}
+.aq_avatar {
+  width: 72px; height: 72px; border-radius: 50%; background: #1aaa6b;
+  color: #fff; font-size: 32px; display: flex; align-items: center;
+  justify-content: center; margin-bottom: 8px;
+}
+.aq_avatar_label { font-size: 13px; color: #888; font-weight: 500; }
+
+/* Generate Banner */
+.aq_generate_banner {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #e8f0fe; border: 1px solid #c5d8fb; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 1.5rem; gap: 12px;
+}
+.aq_generate_text { display: flex; align-items: center; gap: 12px; font-size: 20px; }
+.aq_generate_title { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.aq_generate_sub   { font-size: 12px; color: #666; margin-top: 2px; }
+.aq_generate_btn {
+  background: #2f7be8; color: #fff; border: none; border-radius: 8px;
+  padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
+  white-space: nowrap; transition: background 0.2s; flex-shrink: 0;
+}
+.aq_generate_btn:hover { background: #1e63c7; }
+
+.aq_alert {
+  padding: 10px 14px; border-radius: 8px; font-size: 13px;
+  margin-bottom: 1.25rem; font-weight: 500;
+}
+.aq_alert_error   { background: #fdecea; color: #b71c1c; border: 1px solid #f5c6cb; }
+.aq_alert_success { background: #e8f5e9; color: #1b5e20; border: 1px solid #c3e6cb; }
+.aq_form_group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+.aq_form_group label { font-size: 13px; font-weight: 600; color: #444; }
+
+
+/* Input with inline generate button */
+.aq_input_with_btn { display: flex; gap: 8px; }
+.aq_input_with_btn input {
+  flex: 1; height: 44px; border: 1px solid #ddd; border-radius: 8px;
+  padding: 0 14px; font-size: 14px; color: #1a1a1a; background: #fff;
+  outline: none; transition: border-color 0.2s;
+}
+.aq_input_with_btn input:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26,170,107,0.12);
+}
+.aq_input_with_btn input::placeholder { color: #bbb; }
+.aq_inline_btn {
+  height: 44px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 8px;
+  padding: 0 14px; font-size: 13px; font-weight: 600; color: #444;
+  cursor: pointer; white-space: nowrap; transition: background 0.2s;
+}
+.aq_inline_btn:hover { background: #e2e2e2; }
+
+/* Preview */
+.aq_preview {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: #e8f5e9; border: 1px solid #c3e6cb;
+  border-radius: 10px; padding: 14px 16px; margin-bottom: 1rem;
+}
+.aq_preview_qr      { font-size: 32px; flex-shrink: 0; }
+.aq_preview_details { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.aq_preview_item    { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; }
+.aq_preview_label   { font-weight: 600; color: #555; min-width: 45px; }
+.aq_preview_value   { color: #1b5e20; font-weight: 500; }
+.aq_preview_data    { word-break: break-all; font-size: 12px; }
+
+.aq_btn_row { display: flex; gap: 12px; margin-top: 1.5rem; }
+.aq_btn_cancel {
+  flex: 1; height: 46px; background: #f0f0f0; border: 1px solid #ddd;
+  border-radius: 10px; color: #555; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.aq_btn_cancel:hover { background: #e2e2e2; }
+.aq_btn_submit {
+  flex: 2; height: 46px; background: #1aaa6b; border: none;
+  border-radius: 10px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.aq_btn_submit:hover { background: #148f59; }
+
+@media (max-width: 520px) {
+  .aq_stats_row { grid-template-columns: 1fr; }
+  .aq_card { padding: 1.25rem; }
+  .aq_generate_banner { flex-direction: column; align-items: flex-start; }
+  .aq_input_with_btn { flex-direction: column; }
+  .aq_inline_btn { width: 100%; }
+}
+

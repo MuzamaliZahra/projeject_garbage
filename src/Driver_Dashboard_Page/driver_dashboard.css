@@ -1,0 +1,164 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f6f8;
+}
+
+/* Wrapper */
+.driver_page {
+  padding: 2%;
+  width: 100%;
+  margin: 0;
+ 
+}
+
+/* Header */
+.driver_page_heading h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.driver_page_heading p {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* Stats Grid */
+.stats_driver_page {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.stat {
+  color: #fff;
+  padding: 22px;
+  border-radius: 14px;
+}
+
+.stat h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.stat p {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.green { background: #047857; }
+.orange { background: #f97316; }
+.blue { background: #2563eb; }
+.teal { background: #10b981; }
+
+/* Panel */
+.route_details {
+  background: white;
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+}
+
+/* Route Items */
+.route_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.route_text h4 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.route_text p {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+}
+
+/* Status Badges */
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.status.completed {
+  background: #bbf7d0;
+  color: #166534;
+}
+
+.status.active {
+  background: #047857;
+  color: white;
+  cursor: pointer;
+}
+
+.status.pending {
+  background: #fde68a;
+  color: #92400e;
+}
+
+/* Vehicle Card */
+.vehicle_card ul {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.vehicle_card li {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Quick Actions */
+.actions_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.btn {
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn.green { background: #047857; color: white; }
+.btn.orange { background: #f97316; color: white; }
+.btn.outline { background: transparent; border: 2px solid #047857; color: #047857; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #f4f7fb;
+}
+
+/* ================= CONTAINER ================= */
+.dashboard-container {
+  min-height: 100vh;
+}
+
+/* ================= HEADER ================= */
+.dashboard-header {
+  background: linear-gradient(90deg, #0f7b5b, #0a5c44);
+  color: white;
+  padding: 18px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  background-color: orange;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* ================= CONTENT ================= */
+.dashboard-content {
+  padding: 40px;
+}
+
+.welcome-text {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* ================= ALERT ================= */
+.alert-box {
+  background-color: #e6f0ff;
+  color: #0b4edb;
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+/* ================= STATS ================= */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  padding: 30px;
+  border-radius: 14px;
+  color: white;
+}
+
+.stat-card h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.green {
+  background: linear-gradient(135deg, #0f7b5b, #0a5c44);
+}
+
+.orange {
+  background: linear-gradient(135deg, #ff8c32, #f26a1b);
+}
+
+.blue {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.teal {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* ================= ACTIVITIES ================= */
+.activity-section h3 {
+  margin-bottom: 15px;
+}
+
+.activity-card {
+  background-color: white;
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  font-size: 14px;
+}
+/* ================= ACTIVITY TIMELINE ================= */
+.activity-timeline {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.timeline-item {
+  border-left: 4px solid #0f7b5b;
+  padding-left: 15px;
+  margin-bottom: 18px;
+}
+
+.timeline-item h4 {
+  font-size: 15px;
+  color: #0f7b5b;
+  margin-bottom: 4px;
+}
+
+.timeline-item p {
+  font-size: 13px;
+  color: #555;
+}
+
+/* ================= QUICK ACTIONS ================= */
+.quick-actions {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.quick-actions h3 {
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.action-btn {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+/* Green */
+.action-btn.primary {
+  background-color: #0f7b5b;
+  color: white;
+}
+
+/* Orange */
+.action-btn.orange {
+  background-color: #ff8c32;
+  color: white;
+}
+
+/* Outline buttons */
+.action-btn.outline {
+  background-color: #ffffff;
+  color: #0f7b5b;
+  border: 2px solid #0f7b5b;
+}
+
+/* Hover effects */
+.action-btn:hover {
+  opacity: 0.9;
+}
+

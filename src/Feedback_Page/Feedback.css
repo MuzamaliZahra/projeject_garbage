@@ -1,0 +1,185 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+/* PAGE ROOT */
+.feedback_page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* HEADERS */
+.feedback_page_title {
+  text-align: center;
+  font-size: 28px;
+  margin: 0;
+}
+
+.feedback_page_subtitle {
+  text-align: center;
+  color: #555;
+  margin: 0;
+}
+
+/* BANNERS */
+.feedback_banner {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.feedback_success {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.feedback_error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+/* FORM CARD */
+.feedback_page_form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feedback_page_form h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #111827;
+}
+
+/* RECENT CARD */
+.recent_part {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.recent_part h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #111827;
+}
+
+/* FORM ELEMENTS */
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #374151;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 14px;
+  margin-top: 6px;
+  resize: vertical;
+}
+
+/* BUTTON */
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #0b7a5a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* STARS — no color here, controlled per span */
+.stars {
+  display: flex;
+  gap: 4px;
+  margin: 10px 0;
+}
+
+/* Default star is grey */
+.star {
+  font-size: 28px;
+  transition: color 0.15s;
+  line-height: 1;
+  color: #d1d5db;
+}
+
+/* Filled star is gold */
+.star.filled {
+  color: #f5b301;
+}
+
+/* Empty star is grey */
+.star.empty {
+  color: #d1d5db;
+}
+
+/* Smaller stars inside feedback list */
+.feedback_list .star {
+  font-size: 18px;
+}
+
+/* FEEDBACK ITEM */
+.feedback_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7faf9;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #0b7a5a;
+}
+
+.feedback_list_text p {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #111827;
+}
+
+.feedback_list_text span {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* LOADING / EMPTY */
+.feedback_loading,
+.feedback_empty {
+  color: #6b7280;
+  padding: 20px 0;
+  font-size: 14px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .feedback_list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
