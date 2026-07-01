@@ -188,7 +188,7 @@ return (
         </div>
 
         <div className="status_card blue">
-          <div className="status_num">🚛</div>
+          <div className="status_num"> <i className="bi bi-truck"></i></div>
           <div className="status_label">Active Fleet</div>
         </div>
       </div>
@@ -196,19 +196,19 @@ return (
       {/* Alerts */}
       {error && (
         <div className="alert alert_error">
-          ⚠ {error}
+          <i className="bi bi-exclamation-triangle-fill"></i> {error}
         </div>
       )}
 
       {success && (
         <div className="alert alert_success">
-          ✓ {success}
+          <i className="bi bi-check-circle-fill"></i> {success}
         </div>
       )}
 
       {/* Search */}
       <div className="search_bar">
-        <span className="search_icon">🔍</span>
+        <span className="search_icon"><i className="bi bi-search"></i></span>
 
         <input
           type="text"
@@ -222,7 +222,7 @@ return (
             className="clear_btn"
             onClick={() => setSearch("")}
           >
-            ✕
+            <i className="bi bi-x-lg"></i>
           </button>
         )}
       </div>
@@ -235,7 +235,7 @@ return (
           </div>
         ) : filteredTrucks.length === 0 ? (
           <div className="empty">
-            <div className="empty-icon">🚛</div>
+            <div className="empty-icon"><i className="bi bi-truck-front-fill"></i></div>
             <p>No trucks found</p>
             <span>
               Try a different search or add a new truck
@@ -258,7 +258,7 @@ return (
                 <tr key={truck.truck_ID}>
                   <td>
                     <div className="icon_cell">
-                      🚛
+                      <i className="bi bi-truck"></i>
                     </div>
                   </td>
 
@@ -300,14 +300,14 @@ return (
                         className="btn_edit"
                         onClick={() => openEdit(truck)}
                       >
-                        ✏ Edit
+                        <i className="bi bi-pencil-square"></i> Edit
                       </button>
 
                       <button
                         className="btn_delete"
                         onClick={() => openDelete(truck)}
                       >
-                        🗑 Delete
+                        <i className="bi bi-trash"></i> Delete
                       </button>
                     </div>
                   </td>
@@ -337,16 +337,16 @@ return (
 
                         <div className="tm_modal_header">
                             <h3>Edit Truck</h3>
-                            <button className="tm_modal_close" onClick={() => setShowModal(false)}>✕</button>
+                            <button className="tm_modal_close" onClick={() => setShowModal(false)}><i className="bi bi-x-lg"></i></button>
                         </div>
 
                         <div className="tm_modal_truck_icon">
-                            <span className="tm_modal_icon">🚛</span>
+                            <span className="tm_modal_icon"><i className="bi bi-truck-front-fill"></i></span>
                             <span>ID: {selectedTruck?.truck_ID}</span>
                         </div>
 
                         <div className="tm_modal_bodyy">
-                            {error && <div className="alert alert_error">⚠ {error}</div>}
+                            {error && <div className="alert alert_error"><i className="bi bi-exclamation-triangle-fill"></i> {error}</div>}
 
                             <div className="tm_form_group">
                                 <label>Vehicle Number</label>
@@ -395,11 +395,11 @@ return (
 
                         <div className="tm_modal_header">
                             <h3>Delete Truck</h3>
-                            <button className="tm_modal_close" onClick={() => setShowDeleteModal(false)}>✕</button>
+                            <button className="tm_modal_close" onClick={() => setShowDeleteModal(false)}><i className="bi bi-x-lg"></i></button>
                         </div>
 
                         <div className="tm_delete_body">
-                            <div className="tm_delete_icon">🗑️</div>
+                            <div className="tm_delete_icon"><i className="bi bi-trash-fill"></i></div>
                             <strong>{deleteTarget?.vehicle_number}</strong>
                             <p>Are you sure you want to delete this truck?</p>
                             <span>ID: {deleteTarget?.truck_ID} — This action cannot be undone.</span>

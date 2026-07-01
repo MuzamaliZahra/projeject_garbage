@@ -24,7 +24,7 @@
   border-radius: 14px;
   border: 1px solid #e8e8e8;
   padding: 2rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px #0000000f;
 }
 
 /* ── Avatar ── */
@@ -92,7 +92,7 @@
 }
 .ab_form_group input::placeholder { color: #bbb; }
 
-/* ── Loading / No Data ── */
+/* Loading */
 .ab_loading {
   height: 44px;
   border: 1px solid #ddd;
@@ -153,8 +153,7 @@
   color: #555;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+  
 }
 .ab_btn_cancel:hover { background: #e2e2e2; }
 .ab_btn_submit {
@@ -166,13 +165,12 @@
   color: #fff;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+
 }
 .ab_btn_submit:hover    { background: #148f59; }
 .ab_btn_submit:disabled { background: #aaa; cursor: not-allowed; }
 
-/* ── Responsive ── */
+/* Responsive  */
 @media (max-width: 520px) {
   .ab_form-row  { grid-template-columns: 1fr; }
   .ab_stats-row { grid-template-columns: 1fr; }

@@ -1,4 +1,4 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* { box-sizing: border-box; margin: 0; padding: 0; }*/
 
 .md-page {
   min-height: 100vh;
@@ -34,7 +34,7 @@
 }
 .md-table tbody tr {
   border-bottom: 1px solid #f0f0f0;
-  transition: background 0.15s;
+
 }
 .md-table tbody tr:hover { background: #fafafa; }
 .md-table tbody tr:last-child { border-bottom: none; }
@@ -93,8 +93,7 @@
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+ 
 }
 .md-btn-edit:hover { background: #fff3cd; }
 .md-btn-delete {
@@ -105,12 +104,11 @@
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+
 }
 .md-btn-delete:hover { background: #ffebee; }
 
-/* ── Loading / Empty ── */
+/*  Loading / Empty  */
 .md-loading {
   padding: 3rem;
   text-align: center;
@@ -125,7 +123,7 @@
 .md-empty p { font-size: 16px; font-weight: 600; color: #444; }
 .md-empty span { font-size: 13px; color: #999; }
 
-/* ── Count ── */
+/*  Count  */
 .md-count {
   text-align: right;
   font-size: 13px;
@@ -133,7 +131,7 @@
   margin-top: 10px;
 }
 
-/* ── Modal Overlay ── */
+/*  Modal Overlay */
 .md-modal-overlay {
   position: fixed;
   inset: 0;
@@ -153,7 +151,7 @@
 }
 .md-modal-sm { max-width: 360px; }
 
-/* ── Modal Header ── */
+/*  Modal Header  */
 .md-modal-header {
   display: flex;
   justify-content: space-between;
@@ -171,7 +169,7 @@
 }
 .md-modal-close:hover { color: #333; }
 
-/* ── Modal Avatar ── */
+/*  Modal Avatar  */
 .md-modal-avatar {
   display: flex;
   flex-direction: column;
@@ -185,7 +183,7 @@
   font-weight: 600;
 }
 
-/* ── Modal Body ── */
+/*  Modal Body  */
 .md-modal-body {
   padding: 1rem 1.5rem;
   display: grid;
@@ -217,7 +215,7 @@
   box-shadow: 0 0 0 3px rgba(26,170,107,0.1);
 }
 
-/* ── Modal Footer ── */
+/*  Modal Footer  */
 .md-modal-footer {
   display: flex;
   gap: 10px;
@@ -248,7 +246,7 @@
 }
 .md-btn-save:hover { background: #148f59; }
 
-/* ── Delete Modal ── */
+/* Delete Modal */
 .md-delete-body {
   padding: 1.5rem;
   text-align: center;
@@ -269,11 +267,11 @@
   color: #fff;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
+
 }
 .md-btn-confirm-delete:hover { background: #c62828; }
 
-/* ── Responsive ── */
+/* Responsive */
 @media (max-width: 768px) {
   .md-table th:nth-child(3),
   .md-table td:nth-child(3) { display: none; }

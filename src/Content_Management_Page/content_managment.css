@@ -12,7 +12,7 @@
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
 
-/* ── TABLE ── */
+/* TABLE ── */
 .mc_table { width: 100%; border-collapse: collapse; }
 
 .mc_table thead tr { background: #f8f9fa; border-bottom: 2px solid #eee; }

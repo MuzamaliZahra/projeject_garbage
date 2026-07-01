@@ -3,6 +3,7 @@ import "./CollectionSchedule.css";
 import NavBar from "../Navigation_Bar_Page/Navigation";
 import Footer from "../Footer_Page/Footer";
 import axios from "axios";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const DAY_ORDER = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 
@@ -23,12 +24,12 @@ function CollectionSchedule(){
   const [loadingAll, setLoadingAll] = useState(true);
   const [error, setError] = useState("");
 
-  // Reads from the "user" object stored by your login page
+  // Reads from the  resident  login page
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const residentId = user?.resident_ID || user?.id || user?.resident_id;
 
-  // fetch this resident's matched route schedule
+  // fetch this resident matched route schedule
 
   useEffect(() => {
     if (!residentId) {
@@ -71,46 +72,96 @@ function CollectionSchedule(){
   return (
 <>
 <NavBar/>
-    <div className="schedule_Page">
-          
-      <h1 className="schedule_Page_title">Collection Schedule</h1>
-      <p className="schedule_Page_subtitle">View garbage collection schedule for your area</p>
+     <div className="container schedule_Page py-4">
+    <div className="text-center mb-4">
+      <h1 className="schedule_Page_title">
+        Collection Schedule
+      </h1>
+      <p className="schedule_Page_subtitle">
+        View garbage collection schedule for your area
+      </p>
+    </div>
+    {error && (
+      <p className="text-danger text-center d-flex align-items-center justify-content-center gap-2">
+        <i className="bi bi-exclamation-triangle-fill"></i>
+        <span>{error}</span>
+      </p>
+    )}
 
-      {error && <p style={{ color: "red"}}>⚠ {error}</p>}
+    {/* Area Card */}
+    <div className="card shadow border-0 area_part mb-4">
 
+      <div className="card-body p-4">
 
-      {/* Area Card */}
-      <div className="area_part">
-        <h2 className="area_name">
+        <h2 className="text-success mb-4">
           Your Area: {matchedArea || "-"}
         </h2>
 
         {!residentId ? (
-          <p>Please <strong>log in</strong> to see your personalised area schedule.</p>
+
+          <p>
+            Please <strong>log in</strong> to see
+            your personalised area schedule.
+          </p>
+
         ) : loadingMine ? (
+
           <p>Loading your schedules...</p>
+
         ) : mySchedules.length === 0 ? (
-          <p>No schedules found for your area yet. Please contact the admin</p>
+
+          <p>
+            No schedules found for your area yet.
+            Please contact the admin
+          </p>
+
         ) : (
-          sortByDay(mySchedules)
-        .map((s) => (
-          <div className="Time_Date" key= {s.schedule_id}>
-            <div>
-              <h3>{s.day_of_week} || {s.day_of_week}</h3>
-              <p>{formatTime(s.time)} - {s.area}</p>
-              {s.route_name && <p> {s.route_name}</p>}
+
+          sortByDay(mySchedules).map((s) => (
+            <div
+              className="Time_Date d-flex justify-content-between align-items-center p-3 rounded mb-3"
+              key={s.schedule_id}
+            >
+
+              <div>
+                <h5 className="mb-1">
+                  {s.day_of_week}
+                </h5>
+
+                <p className="mb-1 text-muted">
+                  {formatTime(s.time)} - {s.area}
+                </p>
+
+                {s.route_name && (
+                  <p className="mb-0 text-muted">
+                    {s.route_name}
+                  </p>
+                )}
+              </div>
+
+              <span className="status">
+                {s.status}
+              </span>
+
             </div>
-            <span className="status">{s.status}</span>
-          </div>
-        ))        
+          ))
         )}
 
-       {mySchedules.length > 0 && (
-            <div className="notification">
-              🔔 You will receive notifications before each scheduled collection
-            </div>
-          )}
-        </div>
+        {mySchedules.length > 0 && (
+          <div className="notification p-3 mt-3 d-flex align-items-center">
+
+            <i className="bi bi-bell-fill me-2 fs-5 text-success"></i>
+            
+            <span>
+              You will receive notifications
+              before each scheduled collection
+            </span>
+
+          </div>
+)}
+      </div>
+    </div>
+
 
         {/* Table Section */}
         <div className="schedule_table">
@@ -134,7 +185,7 @@ function CollectionSchedule(){
                 <tbody>
                   {sortByDay(tableData).map ((s) => (
                     <tr key={s.schedule_id}>
-                      <td>{s.day_of_week || "📅"} {s.day_of_week}</td>
+                      <td>{s.day_of_week } {s.day_of_week}</td>
                       <td>{formatTime(s.time)}</td>
                       <td>{s.area || "-"}</td>
                       <td>{s.route_name || `Route ${s.route_ID}` || "-"}</td>

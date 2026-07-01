@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import "../extra_CSS_file.css";
 import AdminNavBar from "../Admin_Navigation_Bar/admin_navigation";
-
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const StarDisplay = ({ value }) => (
     <div className="af_stars">
@@ -58,7 +58,7 @@ function AdminFeedback(){
         const matchSearch =
             (f.resident_name || "").toLowerCase().includes(search.toLowerCase()) ||
             (f.comment || "").toLowerCase().includes(search.toLowerCase()) ||
-            (f.feedback_ID || "").toLowerCase().includes(search.toLowerCase());
+            (f.feedback_ID || "").toString().toLowerCase().includes(search.toLowerCase());
         
         const matchRating =
             filterRating === "all" || parseInt(f.rating) === parseInt(filterRating);
@@ -145,7 +145,9 @@ return(
         {/* Search & Filter Bar */}
         <div className="af_filter_row">
           <div className="search_bar" style={{ flex: 1 }}>
-            <span className="search_icon">🔍</span>
+           <span className="search_icon">
+              <i className="bi bi-search"></i>
+            </span>
             <input
               type="text"
               placeholder="Search by name, comment or feedback ID..."
@@ -162,13 +164,13 @@ return(
                     value={filterRating}
                     onChange={(e) => setFilterRating (e.target.value)}
                 >
-                    <option value="all">⭐ All Ratings</option>
-                    <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
-                    <option value="4">⭐⭐⭐⭐ 4 Stars</option>
-                    <option value="3">⭐⭐⭐ 3 Stars</option>
-                    <option value="2">⭐⭐ 2 Stars</option>
-                    <option value="1">⭐ 1 Star</option>
-            
+                    <option value="all">All Ratings</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Star</option>
+                                
             </select>
         </div>
 
@@ -178,7 +180,9 @@ return(
             <div className="bm_loading">Loading feedback...</div>
           ) : filteredFeedbacks.length === 0 ? (
             <div className="bm_empty">
-              <div className="bm_empty_icon">⭐</div>
+              <div className="bm_empty_icon">
+                <i className="bi bi-star"></i>
+              </div>
               <p>No feedback found</p>
               <span>Try a different search or filter</span>
             </div>
@@ -226,7 +230,7 @@ return(
                           className="bm_btn_delete"
                           onClick={() => openDelete(f)}
                         >
-                          🗑 Delete
+                          <i className="bi bi-trash"></i> Delete
                         </button>
                       </div>
                     </td>
@@ -251,11 +255,15 @@ return(
 
               <div className="bm_modal_header">
                 <h3>Delete Feedback</h3>
-                <button className="bm_modal_close" onClick={() => setShowDeleteModal(false)}>✕</button>
-              </div>
+                <button className="bm_modal_close" onClick={() => setShowDeleteModal(false)}>
+                    <i className="bi bi-x-lg"></i>
+                </button>
+               </div>
 
               <div className="bm_delete_body">
-                <div className="bm_delete_icon">⭐</div>
+                <div className="bm_delete_icon">
+                  <i className="bi bi-exclamation-triangle-fill"></i>
+                </div>
                 <p>Are you sure you want to delete feedback</p>
                 <strong>"{deleteTarget?.feedback_ID}"</strong>
                 <span>

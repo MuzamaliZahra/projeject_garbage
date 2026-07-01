@@ -1,12 +1,16 @@
-
 /*body*/
 
-.body{
-    max-width: 1100px;
-    margin:0 auto;
-    padding: 2rem 1rem;
+.ms_page {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+.ms_body {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 
 .page_header{
     display: flex;
@@ -35,12 +39,8 @@
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
 }
 .add_btn:hover {background: #148f59;}
-
-
 
 .status_row {
   display: grid;
@@ -116,7 +116,7 @@
 .clear_btn:hover{color: #333;}
 
 
-/* ── Loading / Empty ── */
+/* Loading / Empty */
 .loading { 
     padding: 3rem; 
     text-align: center; 
@@ -146,7 +146,7 @@
  }
 
 
-/* ── Card ── */
+/* Card */
  .card{
     background: #fff;
     border-radius: 14px;
@@ -156,7 +156,7 @@
  }
 
 
- /* ── Table ── */
+ /* Table */
 .table { 
     width: 100%; 
     border-collapse: collapse; 
@@ -175,10 +175,8 @@
   text-align: left;
 }
 
-
 .table tbody tr {
   border-bottom: 1px solid #f0f0f0;
-  transition: background 0.15s;
 }
 
 .table tbody tr:hover { 
@@ -199,10 +197,8 @@
 .icon_cell { 
     font-size: 28px;
  }
-
-
  
-/* ── Action Buttons ── */
+/* Action Buttons */
 .action_btns { 
     display: flex; 
     gap: 8px; 
@@ -216,8 +212,6 @@
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
 }
 
 .btn_edit:hover { 
@@ -231,14 +225,9 @@
   border-radius: 7px;
   padding: 6px 12px;
   font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+  font-weight: 600;  
 }
 
 .btn_delete:hover { 
     background: #ffebee; 
 }
-
-
-

@@ -1,4 +1,4 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/** { box-sizing: border-box; margin: 0; padding: 0; }*/
 
 .at-page {
   min-height: 100vh;
@@ -6,19 +6,19 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* ── Body ── */
+/* Body */
 .at-body {
   max-width: 620px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
-/* ── Page Title ── */
+/* Page Title  */
 .at-page-title { margin-bottom: 1.5rem; }
 .at-page-title h2 { font-size: 24px; font-weight: 700; color: #1a1a1a; }
 .at-page-title p { font-size: 14px; color: #777; margin-top: 4px; }
 
-/* ── Card ── */
+/* Card */
 .at-card {
   background: #ffffff;
   border-radius: 14px;
@@ -27,7 +27,7 @@
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
-/* ── Truck Icon ── */
+/* Truck Icon */
 .at-truck-icon-wrap {
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
 .at-truck-icon { font-size: 52px; margin-bottom: 8px; }
 .at-truck-label { font-size: 13px; color: #888; font-weight: 500; }
 
-/* ── Alerts ── */
+/* Alerts */
 .at-alert {
   padding: 10px 14px;
   border-radius: 8px;
@@ -48,7 +48,7 @@
 .at-alert-error { background: #fdecea; color: #b71c1c; border: 1px solid #f5c6cb; }
 .at-alert-success { background: #e8f5e9; color: #1b5e20; border: 1px solid #c3e6cb; }
 
-/* ── Form ── */
+/* Form */
 .at-form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -76,8 +76,8 @@
   color: #1a1a1a;
   background: #fff;
   outline: none;
-  transition: border-color 0.2s;
 }
+
 .at-form-group input:focus,
 .at-form-group select:focus {
   border-color: #1aaa6b;
@@ -85,7 +85,7 @@
 }
 .at-form-group input::placeholder { color: #bbb; }
 
-/* ── Loading / No Drivers ── */
+/* Loading / No Drivers*/
 .at-loading-drivers {
   padding: 12px;
   font-size: 13px;
@@ -103,7 +103,7 @@
   border-radius: 8px;
 }
 
-/* ── Driver Preview ── */
+/* Driver Preview */
 .at-driver-preview {
   display: flex;
   align-items: center;
@@ -118,7 +118,7 @@
 .at-driver-preview-name { font-size: 14px; font-weight: 600; color: #1b5e20; }
 .at-driver-preview-id { font-size: 12px; color: #388e3c; margin-top: 2px; }
 
-/* ── Buttons ── */
+/* Buttons */
 .at-btn-row {
   display: flex;
   gap: 12px;
@@ -133,8 +133,7 @@
   color: #555;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+  
 }
 .at-btn-cancel:hover { background: #e2e2e2; }
 .at-btn-submit {
@@ -146,8 +145,7 @@
   color: #fff;
   font-size: 14px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+  
 }
 .at-btn-submit:hover { background: #148f59; }
 .at-btn-submit:disabled {
@@ -155,7 +153,7 @@
   cursor: not-allowed;
 }
 
-/* ── Responsive ── */
+/*  Responsive  */
 @media (max-width: 480px) {
   .at-form-row { grid-template-columns: 1fr; }
   .at-stats-row { grid-template-columns: 1fr; }

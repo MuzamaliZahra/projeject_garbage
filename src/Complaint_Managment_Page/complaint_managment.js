@@ -6,36 +6,28 @@ import "../extra_CSS_file.css";
 import AdminNavBar from "../Admin_Navigation_Bar/admin_navigation";
 
 function ComplaintManagementAdmin(){
-
     const navigate = useNavigate();
-
     const [complaints, setComplaints] = useState([]);
     const [search, setSearch] = useState("");
     const[loading, setLoading] =useState(true); 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-
     const [showModal, setShowModal] =useState(false);
     const [selectedComplaint, setSelectedComplaint] = useState(null);
     const [editStatus, setEditStatus] = useState("pending");
-
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState(null);
-
     const [ showViewModal, setShowViewModal] = useState(false);
     const [viewTarget, setViewTarget] = useState(null);
-
     const fetchComplaints = () => {
      setLoading(true);
      axios.get("http://localhost:5000/get-all-complaints")   
         .then((res) => { setComplaints(res.data.complaints || res.data); setLoading(false); })
         .catch(() => { setError("Failed to load complaints"); setLoading(false); });
     };
-
     useEffect(() => { 
         fetchComplaints(); 
         }, []);
-
     const filteredComplaints = complaints.filter((c) => {
         const q = search.toLowerCase();
         return (
@@ -46,7 +38,6 @@ function ComplaintManagementAdmin(){
             (c.resident_ID || "").toString().toLowerCase().includes(q)
         );
     });
-
     const getStatusClass= (status) => {
         if (!status) return "";
         if (status === "pending") return "cm_badge_pending";
@@ -54,7 +45,6 @@ function ComplaintManagementAdmin(){
         if (status === "completed") return "cm_badge_completed";
         return "";
     };
-
     const openEdit = (complaint) => {
         setSelectedComplaint(complaint);
         setEditStatus(complaint.status || "pending");
@@ -62,7 +52,6 @@ function ComplaintManagementAdmin(){
         setError("");
         setSuccess("");
     };
-
     const handleUpdate = () => {
         axios.put(`http://localhost:5000/update-complaint-status/${selectedComplaint.complaint_ID}`, {
       status: editStatus,
@@ -74,12 +63,10 @@ function ComplaintManagementAdmin(){
         })
         .catch((err) => setError(err.response?.data?.message || "Error updating complaint."));
 };
-
       const openDelete = (complaint) => {
         setDeleteTarget(complaint);
         setShowDeleteModal(true);
      };
-
     const handleDelete = () => {
         axios.delete(`http://localhost:5000/delete-complaint/${deleteTarget.complaint_ID}`)
             .then(() => {
@@ -89,14 +76,11 @@ function ComplaintManagementAdmin(){
             })
             .catch(() => { setError("Error deleting complaint." ); 
                 setShowDeleteModal(false);
-            });
-    };
-
+            });};
     const openView = (complaint) => {
         setViewTarget(complaint);
         setShowViewModal(true);
     };
-
     const formatDate = (d) => (d ? d.split("T")[0] : "—");
 
     return(
@@ -142,7 +126,9 @@ function ComplaintManagementAdmin(){
 
                     {/*search*/}
                     <div className="cm_search_bar">
-                        <span className="cm_search_icon">🔍</span>
+                        <span className="cm_search_icon">
+                            <i className="bi bi-search"></i>
+                        </span>
                         <input 
                             type="text"
                             placeholder="Search by ID, type, location, resident or status..."
@@ -151,7 +137,9 @@ function ComplaintManagementAdmin(){
                         />
 
                         {search && (
-                            <button className="cm_clear_btn" onClick={() => setSearch("")}>✕</button>
+                            <button className="cm_clear_btn" onClick={() => setSearch("")}>
+                                <i className="bi bi-x-lg"></i>
+                            </button>
                         )}
                     </div>
 
@@ -161,7 +149,9 @@ function ComplaintManagementAdmin(){
                             <div className="cm_loading">Loading Complaints...</div>
                         ): filteredComplaints.length === 0 ? (
                             <div className="cm_empty">
-                                <div className="cm_empty_icon">💬</div>
+                                <div className="cm_empty_icon">
+                                    <i className="bi bi-chat-dots-fill"></i>
+                                </div>
                                 <p>No complaints found</p>
                                 <span>Try a different search term</span>
                             </div>
@@ -183,8 +173,8 @@ function ComplaintManagementAdmin(){
                                 <tbody>
                                     {filteredComplaints.map((complaint) => (
                                         <tr key={complaint.complaint_ID}>
-                                        <td><span className="cm_id_badge">#{complaint.complaint_ID}</span></td>
-                                        <td>{complaint.residernt_ID || "-"}</td> 
+                                        <td><span className="cm_id_badge">{complaint.complaint_ID}</span></td>
+                                        <td>{complaint.resident_ID || "-"}</td> 
                                         <td><span className="cm_type_badge">{complaint.complaint_type || "—"}</span></td>
                                         <td>{complaint.location || "—"}</td>
                                         <td>{formatDate(complaint.date)}</td>
@@ -198,15 +188,24 @@ function ComplaintManagementAdmin(){
                                              <div className="cm_action_btns">
                                                 <button className="cm_btn_view"
                                                 onClick={(e) => { e.stopPropagation(); openView(complaint); }}>
-                                                👁 View
+                                                <>
+                                                    <i className="bi bi-eye-fill me-1"></i>
+                                                    View
+                                                    </>
                                                 </button>
                                                 <button className="cm_btn_edit"
                                                 onClick={(e) => { e.stopPropagation(); openEdit(complaint); }}>
-                                                ✏ Status
+                                                <>
+                                                <i className="bi bi-pencil-square me-1"></i>
+                                                Status
+                                                </>
                                                 </button>
                                                 <button className="cm_btn_delete"
                                                 onClick={(e) => { e.stopPropagation(); openDelete(complaint); }}>
-                                                🗑 Delete
+                                                <>
+                                                <i className="bi bi-trash-fill me-1"></i>
+                                                Delete
+                                                </>
                                                 </button>
                                             </div>
                                         </td>
@@ -232,13 +231,17 @@ function ComplaintManagementAdmin(){
                         
                             <div className="cm_modal_header">
                                 <h3>Complaint Details</h3>
-                                <button className="cm_modal_close" onClick={() => setShowViewModal(false)}>✕</button>
+                                <button className="cm_modal_close" onClick={() => setShowViewModal(false)}>
+                                <i className="bi bi-x-lg"></i>
+                                </button>
                             </div>
 
                             <div className="cm_modal_banner">
-                            <span className="cm_modal_banner_icon">💬</span>
+                            <span className="cm_modal_banner_icon">
+                            <i className="bi bi-chat-dots-fill"></i>
+                            </span>
                             <div>
-                                <div className="cm_modal_banner_id">#{viewTarget.complaint_ID}</div>
+                                <div className="cm_modal_banner_id">{viewTarget.complaint_ID}</div>
                                 <div className="cm_modal_banner_sub">Complaint ID</div>
                             </div>
                             </div>
@@ -308,18 +311,27 @@ function ComplaintManagementAdmin(){
 
             <div className="cm_modal_header">
               <h3>Update Status</h3>
-              <button className="cm_modal_close" onClick={() => setShowModal(false)}>✕</button>
+                <button className="cm_modal_close" onClick={() => setShowModal(false)}>
+                <i className="bi bi-x-lg"></i>
+                </button>
             </div>
 
             <div className="cm_modal_banner">
-              <span className="cm_modal_banner_icon">💬</span>
+              <span className="cm_modal_banner_icon">
+                    <i className="bi bi-chat-dots-fill"></i>
+                </span>
               <div>
-                <div className="cm_modal_banner_id">#{selectedComplaint.complaint_ID}</div>
+                <div className="cm_modal_banner_id">{selectedComplaint.complaint_ID}</div>
                 <div className="cm_modal_banner_sub">{selectedComplaint.complaint_type}</div>
               </div>
             </div>
 
-            {error && <div className="cm_alert cm_alert_error cm_modal_alert">⚠ {error}</div>}
+           {error && (
+            <div className="alert alert_error">
+                <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                {error}
+            </div>
+            )}
 
             <div className="cm_modal_body">
 
@@ -340,9 +352,17 @@ function ComplaintManagementAdmin(){
                       className={`cm_status_pill ${editStatus === s ? "selected" : ""} cm_pill_${s.replace(" ", "_")}`}
                       onClick={() => setEditStatus(s)}
                     >
-                      {s === "pending" && "🕐 "}
-                      {s === "in progress" && "⚙️ "}
-                      {s === "completed" && "✅ "}
+                     {s === "pending" && (
+                        <i className="bi bi-clock-fill me-1"></i>
+                        )}
+
+                        {s === "in progress" && (
+                        <i className="bi bi-gear-fill me-1"></i>
+                        )}
+
+                        {s === "completed" && (
+                        <i className="bi bi-check-circle-fill me-1"></i>
+                        )}
                       {s.charAt(0).toUpperCase() + s.slice(1)}
                     </button>
                   ))}
@@ -377,11 +397,13 @@ function ComplaintManagementAdmin(){
 
             <div className="cm_modal_header">
               <h3>Delete Complaint</h3>
-              <button className="cm_modal_close" onClick={() => setShowDeleteModal(false)}>✕</button>
+              <button className="cm_modal_close" onClick={() => setShowDeleteModal(false)}> <i className="bi bi-x-lg"></i></button>
             </div>
 
             <div className="cm_delete_body">
-              <div className="cm_delete_icon">🗑️</div>
+              <div className="cm_delete_icon">
+                <i className="bi bi-trash-fill"></i>
+            </div>
               <p>Are you sure you want to delete</p>
               <strong>Complaint #{deleteTarget.complaint_ID}</strong>
               <span>{deleteTarget.complaint_type} — {deleteTarget.location}</span>

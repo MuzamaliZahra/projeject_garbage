@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./add_schedule.css";
 import "../extra_CSS_file.css";
 import AdminNavBar from "../Admin_Navigation_Bar/admin_navigation";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -31,7 +32,7 @@ function AddSchedule() {
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
 
-    // Fetch all routes on mount
+    // Fetch all routes 
     useEffect(() => {
         axios
             .get("http://localhost:5000/get-routes")
@@ -171,7 +172,7 @@ function AddSchedule() {
         setError("");
         setSuccess("");
 
-        // ── KEY FIX: send one POST per selected day, each with its own unique schedule_id ──
+        // send one POST per selected day, each with unique schedule_id
         const promises = selectedDays.map((day) => {
             const payload = {
                 schedule_id: `${formData.schedule_id}-${day.slice(0, 3).toUpperCase()}`,
@@ -189,7 +190,7 @@ function AddSchedule() {
                 setSuccess(
                     `Schedule "${formData.schedule_id}" added successfully for ${selectedDays.length} day${selectedDays.length > 1 ? "s" : ""}!`
                 );
-                // ── Reset ALL state including selectedDays ──
+                //  Reset ALL state including selectedDays
                 setFormData({
                     schedule_id: "",
                     time: "",
@@ -198,12 +199,12 @@ function AddSchedule() {
                     area: "",
                 });
                 setSelectedRoute(null);
-                setSelectedDays([]);          // ← this was missing in original
+                setSelectedDays([]);          
                 setTruckConflict(null);
                 setConflictDetails(null);
                 setSubmitting(false);
 
-                // Refresh scheduled routes so the just-added route appears as taken
+                // Refresh scheduled routes so the just added route appears as taken
                 axios.get("http://localhost:5000/get-schedules")
                     .then((res) => {
                         const usedRouteIDs = [...new Set(res.data.map((s) => s.route_ID))];
@@ -212,7 +213,7 @@ function AddSchedule() {
                     .catch(() => {});
             })
             .catch((err) => {
-                // Show which specific day failed if possible
+                // Show which specific day failed 
                 const msg = err.response?.data || "Server error. Please try again.";
                 setError(typeof msg === "string" ? msg : JSON.stringify(msg));
                 setSubmitting(false);
@@ -234,7 +235,9 @@ function AddSchedule() {
                 {/* Stats row */}
                 <div className="status_row">
                     <div className="status_card green">
-                        <div className="status_num">📅</div>
+                       <div className="status_num">
+                        <i className="bi bi-calendar-event-fill"></i>
+                        </div>
                         <div className="status_label">New Schedule</div>
                     </div>
                     <div className="status_card orange">
@@ -242,7 +245,7 @@ function AddSchedule() {
                         <div className="status_label">Total Routes</div>
                     </div>
                     <div className="status_card blue">
-                        <div className="status_status_num">
+                        <div className="status_num">
                             {routes.filter((r) => r.truck_ID).length}
                         </div>
                         <div className="status_label">Routes with Trucks</div>
@@ -252,14 +255,26 @@ function AddSchedule() {
                 {/* Form Card */}
                 <div className="as_card">
                     <div className="as_card_icon_wrap">
-                        <div className="as_card_icon">📅</div>
+                       <div className="as_card_icon">
+                        <i className="bi bi-calendar-event-fill "></i>
+                        </div>
                         <div className="as_card_label">Schedule Registration</div>
                     </div>
 
-                    {error && <div className="as_alert as_alert_error">⚠ {error}</div>}
-                    {success && <div className="as_alert as_alert_success">✓ {success}</div>}
+                   {error && (
+                    <div className="as_alert as_alert_error">
+                        <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                        {error}
+                    </div>
+                    )}
 
-                    <form onSubmit={handleSubmit}>
+                    {success && (
+                    <div className="as_alert as_alert_success">
+                        <i className="bi bi-check-circle-fill me-2"></i>
+                        {success}
+                    </div>
+                    )}
+                      <form onSubmit={handleSubmit}>
 
                         {/* Row 1 */}
                         <div className="as_form_row">
@@ -317,7 +332,8 @@ function AddSchedule() {
 
                             {selectedDays.length > 0 && (
                                 <div className="as_selected_days_summary">
-                                    📅 Selected: <strong>{selectedDays.join(", ")}</strong>
+                                    <i className="bi bi-calendar-check-fill me-2"></i>
+                                     Selected: <strong>{selectedDays.join(", ")}</strong>
                                     <span className="as_days_count">
                                         ({selectedDays.length} day{selectedDays.length > 1 ? "s" : ""})
                                     </span>
@@ -337,14 +353,14 @@ function AddSchedule() {
                             />
 
                             {truckConflict === "checking" && (
-                                <div className="as_availability checking">⏳ Checking truck availability...</div>
+                                <div className="as_availability checking"> Checking truck availability...</div>
                             )}
                             {truckConflict === "ok" && (
                                 <div className="as_availability ok">✓ Truck is available on all selected days</div>
                             )}
                             {truckConflict === "conflict" && (
                                 <div className="as_availability conflict">
-                                    🚫 Truck conflict on <strong>{conflictDetails?.day}</strong>
+                                     Truck conflict on <strong>{conflictDetails?.day}</strong>
                                     {conflictDetails && (
                                         <span> — assigned to <strong>{conflictDetails.route_name}</strong> at {conflictDetails.time}</span>
                                     )}
@@ -353,43 +369,75 @@ function AddSchedule() {
                         </div>
 
                         {/* Route Selection */}
-                        <div className="as_form_group">
-                            <label>Select Route <span className="as_required">*</span></label>
-                            {loading ? (
-                                <div className="as_loading_select">Loading routes...</div>
-                            ) : routes.length === 0 ? (
-                                <div className="as_no_data">⚠ No routes available. Please add a route first.</div>
-                            ) : (
-                                <select name="route_ID" value={formData.route_ID} onChange={handleChange} required>
-                                    <option value="">--- Select a Route ---</option>
-                                    {routes.map((route) => {
-                                        const isScheduled = scheduledRoutes.includes(route.route_ID);
-                                        return (
-                                            <option
-                                                key={route.route_ID}
-                                                value={route.route_ID}
-                                                disabled={isScheduled}
-                                                style={{ color: isScheduled ? "#aaa" : "inherit" }}
-                                            >
-                                                {isScheduled ? "✗ " : "📍 "}
-                                                {route.route_name} - ID: {route.route_ID} | Area: {route.area_name}
-                                                {isScheduled
-                                                    ? " (Already Scheduled)"
-                                                    : route.truck_ID
-                                                    ? ` | 🚛 Truck: ${route.truck_ID}`
-                                                    : " | ⚠ No Truck"}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
-                            )}
+                       
+                    <div className="as_form_group">
+                        <label>
+                            Select Route <span className="as_required">*</span>
+                        </label>
 
-                            <div className="as_route_availability_hint">
-                                {routes.filter(r => !scheduledRoutes.includes(r.route_ID)).length} of {routes.length} routes available
+                        {loading ? (
+                            <div className="as_loading_select">
+                                <i className="bi bi-arrow-repeat me-2"></i>
+                                Loading routes...
                             </div>
-                        </div>
+                        ) : routes.length === 0 ? (
+                            <div className="as_no_data">
+                                <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                                No routes available. Please add a route first.
+                            </div>
+                        ) : (
+                            <select
+                                name="route_ID"
+                                value={formData.route_ID}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="">--- Select a Route ---</option>
 
-                        {/* Area auto-filled */}
+                                {routes.map((route) => {
+                                    const isScheduled = scheduledRoutes.includes(
+                                        route.route_ID
+                                    );
+
+                                    return (
+                                        <option
+                                            key={route.route_ID}
+                                            value={route.route_ID}
+                                            disabled={isScheduled}
+                                            style={{
+                                                color: isScheduled
+                                                    ? "#aaa"
+                                                    : "inherit",
+                                            }}
+                                        >
+                                            {isScheduled ? "[Scheduled]" : "[Available]"}{" "}
+                                            {route.route_name} - ID:{" "}
+                                            {route.route_ID} | Area:{" "}
+                                            {route.area_name}
+                                            {isScheduled
+                                                ? " (Already Scheduled)"
+                                                : route.truck_ID
+                                                ? ` | Truck: ${route.truck_ID}`
+                                                : " | No Truck"}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        )}
+
+                        <div className="as_route_availability_hint">
+                            <i className="bi bi-info-circle-fill me-1"></i>
+                            {
+                                routes.filter(
+                                    (r) =>
+                                        !scheduledRoutes.includes(r.route_ID)
+                                ).length
+                            }{" "}
+                            of {routes.length} routes available
+                        </div>
+                    </div>
+
+                        {/* Area auto filled */}
                         {selectedRoute && (
                             <div className="as_form_group">
                                 <label>Area</label>
@@ -404,7 +452,9 @@ function AddSchedule() {
                         {/* Conflict Banner */}
                         {truckConflict === "conflict" && (
                             <div className="as_conflict_banner">
-                                <div className="as_conflict_icon">🚫</div>
+                               <div className="as_conflict_icon">
+                                    <i className="bi bi-x-octagon-fill text-danger"></i>
+                                </div>
                                 <div className="as_conflict_text">
                                     <strong>Truck Unavailable on {conflictDetails?.day}</strong>
                                     <p>
@@ -424,46 +474,92 @@ function AddSchedule() {
                         {selectedRoute && (
                             <div className="as_route_preview">
                                 <div className="as_route_preview_header">
-                                    <span className="as_preview_icon">📍</span>
+                                    <span className="as_preview_icon">
+                                        <i className="bi bi-geo-alt-fill text-danger"></i>
+                                    </span>
                                     <div>
                                         <div className="as_preview_route_name">{selectedRoute.route_name}</div>
                                         <div className="as_preview_route_id">Route ID: {selectedRoute.route_ID}</div>
                                     </div>
                                 </div>
                                 <div className="as_route_detail_grid">
-                                    <div className="as_route_detail_item">
-                                        <span className="as_detail_label">🟢 Start</span>
-                                        <span className="as_detail_value">{selectedRoute.start_location}</span>
-                                    </div>
-                                    <div className="as_route_detail_item">
-                                        <span className="as_detail_label">🔴 End</span>
-                                        <span className="as_detail_value">{selectedRoute.end_location}</span>
-                                    </div>
-                                    <div className="as_route_detail_item">
-                                        <span className="as_detail_label">📌 Area</span>
-                                        <span className="as_detail_value">{selectedRoute.area_name}</span>
-                                    </div>
-                                    <div className="as_route_detail_item">
-                                        <span className="as_detail_label">⏱ Duration</span>
-                                        <span className="as_detail_value">{selectedRoute.estimated_duration || "—"}</span>
-                                    </div>
-                                    <div className="as_route_detail_item">
-                                        <span className="as_detail_label">🚛 Truck</span>
-                                        <span className="as_detail_value">
-                                            {selectedRoute.truck_ID
-                                                ? `ID: ${selectedRoute.truck_ID}`
-                                                : <span style={{ color: "#e8872a" }}>⚠ No truck assigned</span>}
-                                        </span>
-                                    </div>
-                                    <div className="as_route_detail_item">
-                                        <span className="as_detail_label">👤 Driver</span>
-                                        <span className="as_detail_value">
-                                            {selectedRoute.driver_name || selectedRoute.driver_ID
-                                                ? selectedRoute.driver_name || `ID: ${selectedRoute.driver_ID}`
-                                                : <span style={{ color: "#e8872a" }}>⚠ No driver assigned</span>}
-                                        </span>
-                                    </div>
-                                </div>
+
+                        <div className="as_route_detail_item">
+                            <span className="as_detail_label">
+                                <i className="bi bi-geo-alt-fill text-success me-1"></i>
+                                Start
+                            </span>
+                            <span className="as_detail_value">
+                                {selectedRoute.start_location}
+                            </span>
+                        </div>
+
+                        <div className="as_route_detail_item">
+                            <span className="as_detail_label">
+                                <i className="bi bi-geo-alt-fill text-danger me-1"></i>
+                                End
+                            </span>
+                            <span className="as_detail_value">
+                                {selectedRoute.end_location}
+                            </span>
+                        </div>
+
+                        <div className="as_route_detail_item">
+                            <span className="as_detail_label">
+                                <i className="bi bi-pin-map-fill me-1"></i>
+                                Area
+                            </span>
+                            <span className="as_detail_value">
+                                {selectedRoute.area_name}
+                            </span>
+                        </div>
+
+                        <div className="as_route_detail_item">
+                            <span className="as_detail_label">
+                                <i className="bi bi-clock-fill me-1"></i>
+                                Duration
+                            </span>
+                            <span className="as_detail_value">
+                                {selectedRoute.estimated_duration || "—"}
+                            </span>
+                        </div>
+
+                        <div className="as_route_detail_item">
+                            <span className="as_detail_label">
+                                <i className="bi bi-truck-front-fill me-1"></i>
+                                Truck
+                            </span>
+                            <span className="as_detail_value">
+                                {selectedRoute.truck_ID ? (
+                                    `ID: ${selectedRoute.truck_ID}`
+                                ) : (
+                                    <span style={{ color: "#e8872a" }}>
+                                        <i className="bi bi-exclamation-triangle-fill me-1"></i>
+                                        No truck assigned
+                                    </span>
+                                )}
+                            </span>
+                        </div>
+
+                        <div className="as_route_detail_item">
+                            <span className="as_detail_label">
+                                <i className="bi bi-person-fill me-1"></i>
+                                Driver
+                            </span>
+                            <span className="as_detail_value">
+                                {selectedRoute.driver_name || selectedRoute.driver_ID ? (
+                                    selectedRoute.driver_name ||
+                                    `ID: ${selectedRoute.driver_ID}`
+                                ) : (
+                                    <span style={{ color: "#e8872a" }}>
+                                        <i className="bi bi-exclamation-triangle-fill me-1"></i>
+                                        No driver assigned
+                                    </span>
+                                )}
+                            </span>
+                        </div>
+
+                    </div>
                             </div>
                         )}
 
@@ -471,7 +567,10 @@ function AddSchedule() {
                         {formData.schedule_id && formData.time && formData.route_ID &&
                          selectedDays.length > 0 && truckConflict !== "conflict" && (
                             <div className="as_summary_preview">
-                                <div className="as_summary_title">📋 Schedule Summary</div>
+                                <div className="as_summary_title">
+                                <i className="bi bi-clipboard-data-fill me-2"></i>
+                                Schedule Summary
+                                </div>
                                 <div className="as_summary_grid">
                                     <div className="as_summary_item">
                                         <span className="as_summary_label">Schedule ID</span>
@@ -521,7 +620,7 @@ function AddSchedule() {
                             >
                                 {submitting
                                     ? "Adding..."
-                                    : `📅 Add Schedule${selectedDays.length > 1 ? ` (${selectedDays.length} days)` : ""}`}
+                                    : ` Add Schedule${selectedDays.length > 1 ? ` (${selectedDays.length} days)` : ""}`}
                             </button>
                         </div>
 

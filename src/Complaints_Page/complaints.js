@@ -3,18 +3,14 @@ import "./complaints.css";
 import NavBar from "../Navigation_Bar_Page/Navigation";
 import Footer from "../Footer_Page/Footer";
 
-
 const API_BASE = "http://localhost:5000";
-
 const getResidentID = () => {
   try {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     return user.id || null;
   } catch {
     return null;
-  }
-  };
-
+  }};
   const StatusBadge = ({ status }) => {
     const cls = 
       status === "pending" ? "complaint_pending"
@@ -23,11 +19,8 @@ const getResidentID = () => {
       : "";
     return <span className={`complaint_status ${cls}`}>{status}</span>;
   };
-
 const ComplaintManagement = () => {
-
   const residentID = getResidentID();
-
   const [showForm, setShowForm]     =useState(false);
   const [complaintType, setComplaintType] = useState("missed pickup");
   const [location, setLocation] = useState("");
@@ -36,7 +29,6 @@ const ComplaintManagement = () => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef    = useRef(null);
-
   const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -46,8 +38,6 @@ const ComplaintManagement = () => {
     useEffect(() => {
       if (residentID) fetchComplaints();
     }, []);
-
-
   const fetchComplaints = async () => {
     setLoading(true);
     try {
@@ -58,18 +48,13 @@ const ComplaintManagement = () => {
       setError("Failed to load complaints. Please try again.");
     } finally {
       setLoading(false);
-    }
-  };
-
-
-
+    }};
   const handleImageChange = (e) => {
     const file = e.target.files [0];
     if (!file) return;
     setImageFile(file);
     setImagePreview(URL.createObjectURL(file));
   };
-
   const resetForm = () => {
     setComplaintType("missed pickup");
     setLocation("");
@@ -79,21 +64,17 @@ const ComplaintManagement = () => {
     setImagePreview(null);
     setError("");
   };
-
   const handleSubmit = async () => {
     setError("");
     setSuccessMsg("");
-
     if (!residentID) {
       setError("You must be logged in as a resident to submit a complaint.");
       return;
     }
-
     if (!location.trim()) {
       setError("Please enter a location.");
       return;
     }
-
     const formData = new FormData();
     formData.append("complaint_type", complaintType);
     formData.append("description", description);
@@ -101,7 +82,6 @@ const ComplaintManagement = () => {
     formData.append("date", date);
     formData.append("resident_ID", residentID);
     if (imageFile) formData.append("image", imageFile);
-
     setSubmitting(true);
     try {
       const res = await fetch (`${API_BASE}/submit-complaint`, {method: "POST", body: formData});
@@ -125,28 +105,40 @@ const ComplaintManagement = () => {
     <div className="complaint_page">
         <NavBar />
       <div className="complaint_page_container">
-
         {/* Header */}
         <div className="complaint_page_header">
           <div>
-            <h1>💬 Complaint Management</h1>
+            <h1>
+              <i className="bi bi-chat-dots-fill me-2"></i>
+              Complaint Management
+            </h1>
             <p>Submit and track your complaints</p>
           </div>
           <button className="submit_button" onClick={() => {setShowForm(!showForm); setError(""); setSuccessMsg("");}}>
-            {showForm ? "✕ Close Form" : "+ Submit New Complaint"}
+            <>
+              <i className={`bi ${showForm ? "bi-x-lg" : "bi-plus-lg"} me-2`}></i>
+              {showForm ? "Close Form" : "Submit New Complaint"}
+            </>
           </button>
         </div>
 
 
-        {successMsg && <div className="complaint_banner complaint_banner_success">✅ {successMsg}</div>}
-        {error && <div className="complaint_banner complaint_banner_error">⚠️ {error}</div>}
-
-
+          {successMsg && (
+            <div className="complaint_banner complaint_banner_success">
+              <i className="bi bi-check-circle-fill me-2"></i>
+              {successMsg}
+            </div>
+          )}
+        {error && (
+          <div className="complaint_banner complaint_banner_error">
+            <i className="bi bi-exclamation-triangle-fill me-2"></i>
+            {error}
+          </div>
+        )}
         {/* FORM CARD */}
         {showForm &&(
         <div className="new_complaint">
           <h2>Submit New Complaint</h2>
-
           <div className="new_complaint_part">
             <label>Complaint Type</label>
             <select value={complaintType} onChange={(e) => setComplaintType(e.target.value)}> 
@@ -156,7 +148,6 @@ const ComplaintManagement = () => {
               <option>Other</option>
             </select>
           </div>
-
           <div className="new_complaint_part">
             <label>Location</label>
             <input placeholder="Enter location" value={location}
@@ -183,7 +174,10 @@ const ComplaintManagement = () => {
                 {imagePreview
                   ? <img src={imagePreview} alt="Preview"
                       style={{ maxHeight: 160, borderRadius: 6, objectFit: "cover" }} />
-                  : <>📷 Click to upload image</>}
+                  : <>
+                    <i className="bi bi-camera-fill me-2"></i>
+                    Click to upload image
+                  </>}
               </div>
 
               <input ref={fileInputRef} type="file" accept="image/*"
@@ -202,19 +196,14 @@ const ComplaintManagement = () => {
               </button>
             </div>
         </div>
-
         )}
-
         {/* TABLE CARD (NOW GUARANTEED BELOW) */}
         <div className="complaints">
           <h2>My Complaints</h2>
-        
         {loading ? (<p className="complaint_loading">Loading complaints...</p>
         ) : complaints.length === 0 ? (
           <p className="complaint_empty">No complaints found. Submit one above!</p>
         ) : (
-          
-
           <table className="complaint_table">
             <thead>
               <tr>
@@ -244,16 +233,13 @@ const ComplaintManagement = () => {
               </td>
               </tr>
               ))}
-             
             </tbody>
           </table>
         )}
         </div>
-
       </div>
       <Footer/>
     </div>
   );
 };
-
 export default ComplaintManagement;

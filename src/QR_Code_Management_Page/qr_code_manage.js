@@ -112,13 +112,22 @@ function ManageQRCode(){
                 {/*page header*/}
                 <div className="page_header">
                     <div>
-                        <h2>Mnsge QR Codes</h2>
-                        <p>View, edit and delete QR codes assigned to bins</p>
+                        <h2>Manage QR Codes</h2>
+                        <p>
+                            View, edit and delete QR codes
+                            assigned to bins
+                        </p>
                     </div>
-                    <button className="add_btn" onClick={() => navigate("/add_qrcode")}>
+
+                    <button
+                        className="add_btn"
+                        onClick={() => navigate("/add_qrcode")}
+                    >
+                      
                         + Add QR Code
                     </button>
                 </div>
+
 
 
                 {/* Stats Row */}
@@ -134,21 +143,32 @@ function ManageQRCode(){
                     </div>
 
                     <div className="status_card blue">
-                        <div className="status_num">📱</div>
+                        <div className="status_num"><i className="bi bi-qr-code-scan"></i></div>
                         <div className="status_label">Active Codes</div>
                     </div>
                 </div>
 
                 {/* Alerts */}
 
-                {error && <div className="alert alert_error">⚠{error}</div>}
-                {success && <div className="alert alert_success">✓{success}</div>}
+                   {error && (
+                    <div className="alert alert_error">
+                        <i className="bi bi-exclamation-triangle-fill"></i>
+                        {error}
+                    </div>
+                )}
+
+                {success && (
+                    <div className="alert alert_success">
+                        <i className="bi bi-check-circle-fill"></i>
+                        {success}
+                    </div>
+                )}
                 
 
                 {/*search bar*/}
 
                 <div className="search_bar">
-                    <span className="search_icon">🔍</span>
+                    <span className="search_icon"><i className="bi bi-search"></i></span>
                     <input 
                         type="text"
                         placeholder="Search by QR ID or data..." 
@@ -157,7 +177,7 @@ function ManageQRCode(){
                     />
 
                     {search && (
-                        <button className="clear_btn" onClick={() => setSearch("")}>✕</button>
+                        <button className="clear_btn" onClick={() => setSearch("")}> <i className="bi bi-x-lg"></i></button>
                     )}
                 </div>
 
@@ -167,7 +187,7 @@ function ManageQRCode(){
                         <div className="qm_loading">Loading QR codes...</div>
                     ) : filteredQR.length === 0 ? (
                         <div className="qm_empty">
-                            <div className="qm_empty_icob">📱</div>
+                            <div className="qm_empty_icob"><i className="bi bi-qr-code"></i></div>
                             <p>No QR codes found</p>
                             <span>Try a different search or add a new QR code</span>
                         </div>
@@ -185,7 +205,7 @@ function ManageQRCode(){
                                 {filteredQR.map(qr => (
                                     <tr key= {qr.QR_id}>
                                         <td>
-                                            <div className="qm_qr_icon_cell">📱</div>
+                                            <div className="qm_qr_icon_cell"><i className="bi bi-qr-code"></i></div>
                                         </td>
 
                                         <td>
@@ -198,11 +218,11 @@ function ManageQRCode(){
                                         <td>
                                             <div className="qm_action_btns">
                                                 <button className="qm_btn_edit" onClick={() => openEdit(qr)}>
-                                                    ✏ Edit
+                                                    <i className="bi bi-pencil-square"></i>
                                                 </button>
 
                                                 <button className="qm_btn_delete" onClick={() => openDelete(qr)}>
-                                                    🗑 Delete
+                                                   <i className="bi bi-trash-fill"></i>
                                                 </button>
                                             </div>
                                         </td>
@@ -226,17 +246,21 @@ function ManageQRCode(){
                         <div className="qm_modal" onClick={(e) => e.stopPropagation()}>
                             <div className="qm_modal_header">
                                 <h3>Edit QR Code</h3>
-                                <button className="qm_modal_close" onClick={() => setShowModal(false)}>✕</button>
+                                <button className="qm_modal_close" onClick={() => setShowModal(false)}> <i className="bi bi-x-lg"></i></button>
                             </div>
 
                             <div className="qm_modal_qr_icon">
-                                <div className="qm_modal_icon">📱</div>
+                                <div className="qm_modal_icon"><i className="bi bi-qr-code"></i></div>
                                 <span>QR ID: {selectedQR.QR_id}</span>
                             </div>
 
                             {error && (
-                                <div className="qm_alert qm_alert_error" style={{ margin: "0 1.5rem" }}>
-                                ⚠ {error}
+                                <div
+                                    className="qm_alert qm_alert_error"
+                                    style={{ margin: "0 1.5rem" }}
+                                >
+                                    <i className="bi bi-exclamation-triangle-fill"></i>
+                                    {error}
                                 </div>
                             )}
 
@@ -264,7 +288,7 @@ function ManageQRCode(){
                                         />
 
                                         <button type="button" className="qm_inline_btn" onClick={generateNewData}>
-                                        🔄 Generate
+                                        <i className="bi bi-arrow-repeat"></i> Generate
                                         </button>
 
                                         </div>
@@ -287,11 +311,11 @@ function ManageQRCode(){
 
               <div className="qm_modal_header">
                 <h3>Delete QR Code</h3>
-                <button className="qm_modal_close" onClick={() => setShowDeleteModal(false)}>✕</button>
+                <button className="qm_modal_close" onClick={() => setShowDeleteModal(false)}><i className="bi bi-x-lg"></i></button>
               </div>
 
               <div className="qm_delete_body">
-                <div className="qm_delete_icon">🗑️</div>
+                <div className="qm_delete_icon"><i className="bi bi-trash3-fill"></i></div>
                 <p>Are you sure you want to delete</p>
                 <strong>"{deleteTarget?.QR_id}"</strong>
                 <span style={{ fontSize: "12px", color: "#888", wordBreak: "break-all" }}>

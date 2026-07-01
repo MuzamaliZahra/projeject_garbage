@@ -9,7 +9,6 @@ import AdminNavBar from "../Admin_Navigation_Bar/admin_navigation";
 function AddDriver() {
 
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     driver_ID: "",
     name: "",
@@ -18,10 +17,8 @@ function AddDriver() {
     license_no: "",
     password: ""
   });
-
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setError("");
@@ -45,18 +42,15 @@ function AddDriver() {
     setError("All fields are required.");
     return;
   }
-
-  //
+  
   if (formData.driver_ID.toString().trim() === "") {
     setError("Driver ID cannot be empty.");
     return;
   }
-
   if (formData.phone_no.length < 10) {
     setError("Phone number must be at least 10 digits.");
     return;
   }
-
   if (formData.password.length < 6) {
     setError("Password must be at least 6 characters.");
     return;
@@ -87,15 +81,21 @@ function AddDriver() {
         {/* Stats Row */}
         <div className="status_row">
           <div className="status_card green">
-            <div className="status_num">🚛</div>
+            <div className="status_num">
+              <i className="bi bi-truck"></i>
+            </div>
             <div className="status_label">New Driver</div>
           </div>
           <div className="status_card orange">
-            <div className="status_num">📋</div>
+            <div className="status_num">
+              <i className="bi bi-card-checklist"></i>
+            </div>
             <div className="status_label">Fill All Details</div>
           </div>
           <div className="status_card blue">
-            <div className="status_num">✅</div>
+           <div className="status_num">
+              <i className="bi bi-check-circle-fill"></i>
+            </div>
             <div className="status_label">Save to System</div>
           </div>
         </div>
@@ -105,12 +105,22 @@ function AddDriver() {
 
           {/* Avatar */}
           <div className="ad-avatar-wrap">
-            <div className="ad-avatar">{getInitials()}</div>
+           {/* <div className="ad-avatar">{getInitials()}</div> */}
             <div className="ad-avatar-label">Driver Profile</div>
           </div>
+         
 
-          {error && <div className="ad-alert ad-alert-error">⚠ {error}</div>}
-          {success && <div className="ad-alert ad-alert-success">✓ {success}</div>}
+          {error && (
+            <div className="ad-alert ad-alert-error">
+              <i className="bi bi-exclamation-triangle-fill"></i> {error}
+            </div>
+          )}
+
+          {success && (
+            <div className="ad-alert ad-alert-success">
+              <i className="bi bi-check-circle-fill"></i> {success}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit}>
 
@@ -197,7 +207,7 @@ function AddDriver() {
                 Cancel
               </button>
               <button type="submit" className="ad-btn-submit">
-                🚛 Add Driver
+                <i className="bi bi-truck"></i> Add Driver
               </button>
             </div>
 

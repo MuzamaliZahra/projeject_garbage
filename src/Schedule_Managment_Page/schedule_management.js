@@ -44,7 +44,7 @@ function ManageSchedules() {
 
   useEffect(() => { fetchSchedules(); fetchRoutes(); }, []);
 
-  // ── Check truck conflict whenever route, time, or day changes in edit modal ──
+  // Check truck conflict whenever route, time, or day changes in edit modal
   useEffect(() => {
     if (!showModal) return;
     if (!editData.route_ID || !editData.time || !editData.day_of_week) {
@@ -196,9 +196,19 @@ function ManageSchedules() {
           </button>
         </div>
 
-        {error && <div className="alert alert_error">⚠ {error}</div>}
-        {success && <div className="alert alert_success">✓ {success}</div>}
+                {error && (
+            <div className="alert alert_error">
+              <i className="bi bi-exclamation-triangle-fill me-2"></i>
+              {error}
+            </div>
+          )}
 
+          {success && (
+            <div className="alert alert_success">
+              <i className="bi bi-check-circle-fill me-2"></i>
+              {success}
+            </div>
+          )}
         {/* Stats */}
         <div className="status_row">
           <div className="status_card green">
@@ -217,7 +227,9 @@ function ManageSchedules() {
 
         {/* Search */}
         <div className="search_bar">
-          <span className="search_icon">🔍</span>
+          <span className="search_icon">
+            <i className="bi bi-search"></i>
+          </span>
           <input
             type="text"
             placeholder="Search by ID, area, route, status or day..."
@@ -225,7 +237,7 @@ function ManageSchedules() {
             onChange={(e) => setSearch(e.target.value)}
           />
           {search && (
-            <button className="clear_btn" onClick={() => setSearch("")}>✕</button>
+            <button className="clear_btn" onClick={() => setSearch("")}><i className="bi bi-x-lg"></i></button>
           )}
         </div>
 
@@ -235,7 +247,9 @@ function ManageSchedules() {
             <div className="ms_loading">Loading Schedules...</div>
           ) : filteredSchedules.length === 0 ? (
             <div className="ms_empty">
-              <div className="ms_empty_icon">📅</div>
+              <div className="ms_empty_icon">
+                <i className="bi bi-calendar-week-fill"></i>
+              </div>
               <p>No schedules found</p>
               <span>Try a different search or add a new schedule</span>
             </div>
@@ -266,7 +280,10 @@ function ManageSchedules() {
                           className="ms_btn_route"
                           onClick={(e) => { e.stopPropagation(); navigate(`/route_managment?highlight=${schedule.route_ID}`); }}
                         >
-                          ↗ Route
+                        <>
+                          <i className="bi bi-arrow-up-right-square-fill me-1"></i>
+                          Route
+                        </>
                         </button>
                       </div>
                     </td>
@@ -279,11 +296,17 @@ function ManageSchedules() {
                       <div className="ms_action_btns">
                         <button className="ms_btn_edit"
                           onClick={(e) => { e.stopPropagation(); openEdit(schedule); }}>
-                          ✏ Edit
+                          <>
+                            <i className="bi bi-pencil-square me-1"></i>
+                            Edit
+                          </>
                         </button>
                         <button className="ms_btn_delete"
                           onClick={(e) => { e.stopPropagation(); openDelete(schedule); }}>
-                          🗑 Delete
+                          <>
+                            <i className="bi bi-trash-fill me-1"></i>
+                            Delete
+                          </>
                         </button>
                       </div>
                     </td>
@@ -302,29 +325,36 @@ function ManageSchedules() {
 
       </div>
 
-      {/* ── Edit Modal ── */}
+      {/*Edit Modal*/}
       {showModal && (
         <div className="ms_modal_overlay" onClick={() => setShowModal(false)}>
           <div className="ms_modal" onClick={(e) => e.stopPropagation()}>
 
             <div className="ms_modal_header">
               <h3>Edit Schedule</h3>
-              <button className="ms_modal_close" onClick={() => setShowModal(false)}>✕</button>
+              <button className="ms_modal_close" onClick={() => setShowModal(false)}><i className="bi bi-x-lg"></i></button>
             </div>
 
             <div className="ms_modal_banner">
-              <span className="ms_modal_banner_icon">📅</span>
+             <span className="ms_modal_banner_icon">
+              <i className="bi bi-calendar-event-fill"></i>
+            </span>
               <div>
                 <div className="ms_modal_banner_id">{selectedSchedule?.schedule_id}</div>
                 <div className="ms_modal_banner_sub">Schedule ID</div>
               </div>
             </div>
 
-            {error && <div className="ms_alert ms_alert_error ms_modal_alert">⚠ {error}</div>}
+            {error && (
+              <div className="ms_alert ms_alert_error ms_modal_alert">
+                <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                {error}
+              </div>
+            )}
 
             <div className="ms_modal_body">
 
-              {/* Day selector — pill style matching AddSchedule */}
+              {/* Day selector */}
               <div className="ms_form_group">
                 <label>Day of Week</label>
                 <div className="ms_day_pills">
@@ -345,7 +375,8 @@ function ManageSchedules() {
                 </div>
                 {editData.day_of_week && (
                   <div className="ms_selected_day_hint">
-                    📅 Selected: <strong>{editData.day_of_week}</strong>
+                    <i className="bi bi-calendar-check-fill me-2"></i>
+                      Selected: <strong>{editData.day_of_week}</strong>
                   </div>
                 )}
               </div>
@@ -360,14 +391,25 @@ function ManageSchedules() {
                   onChange={handleEditChange}
                 />
                 {truckConflict === "checking" && (
-                  <div className="ms_availability checking">⏳ Checking truck availability...</div>
+                  <div className="ms_availability checking">
+                  <>
+                    <i className="bi bi-hourglass-split me-2"></i>
+                    Checking truck availability...
+                  </>
+                  </div>
                 )}
                 {truckConflict === "ok" && (
-                  <div className="ms_availability ok">✓ Truck is available on {editData.day_of_week}</div>
-                )}
+                  <div className="ms_availability ok"><>
+                    <i className="bi bi-check-circle-fill me-2"></i>
+                    Truck is available on {editData.day_of_week}
+                  </> {editData.day_of_week}</div>
+                                  )}
                 {truckConflict === "conflict" && (
                   <div className="ms_availability conflict">
-                    🚫 Truck conflict on <strong>{editData.day_of_week}</strong>
+                   <>
+                      <i className="bi bi-x-octagon-fill me-2"></i>
+                      Truck conflict on
+                    </> <strong>{editData.day_of_week}</strong>
                     {conflictDetails && (
                       <span> — assigned to <strong>{conflictDetails.route_name}</strong> at {conflictDetails.time}</span>
                     )}
@@ -392,7 +434,7 @@ function ManageSchedules() {
                   {routes.map((route) => (
                     <option key={route.route_ID} value={route.route_ID}>
                       {route.route_name} — {route.area_name}
-                      {route.truck_ID ? ` | 🚛 ${route.truck_ID}` : " | ⚠ No Truck"}
+                      {route.truck_ID ? ` |  ${route.truck_ID}` : " | ⚠ No Truck"}
                     </option>
                   ))}
                 </select>
@@ -417,7 +459,9 @@ function ManageSchedules() {
               {/* Conflict banner */}
               {truckConflict === "conflict" && (
                 <div className="ms_conflict_banner">
-                  <div className="ms_conflict_icon">🚫</div>
+                  <div className="ms_conflict_icon">
+                    <i className="bi bi-x-octagon-fill text-danger"></i>
+                  </div>
                   <div className="ms_conflict_text">
                     <strong>Truck Unavailable on {editData.day_of_week}</strong>
                     <p>
@@ -432,12 +476,16 @@ function ManageSchedules() {
                 </div>
               )}
 
+
               {editData.route_ID && (
                 <div
                   className="ms_route_link"
                   onClick={() => navigate(`/route_managment?highlight=${editData.route_ID}`)}
                 >
-                  ↗ Need to update this route? Go to Route Management
+                 <>
+                    <i className="bi bi-arrow-up-right-square-fill me-2"></i>
+                    Need to update this route? Go to Route Management
+                  </>
                 </div>
               )}
 
@@ -469,7 +517,9 @@ function ManageSchedules() {
             </div>
 
             <div className="ms_delete_body">
-              <div className="ms_delete_icon">🗑️</div>
+              <div className="ms_delete_icon">
+                <i className="bi bi-trash-fill text-danger"></i>
+              </div>
               <p>Are you sure you want to delete</p>
               <strong>"{deleteTarget?.schedule_id}"</strong>
               <span>{deleteTarget?.day_of_week} — {formatTime(deleteTarget?.time)}</span>

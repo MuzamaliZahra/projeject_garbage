@@ -27,7 +27,7 @@ function ManageRoutes() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null);
 
-  // ── Fetch all data ──
+  // Fetch all data 
   const fetchRoutes = () => {
     setLoading(true);
     axios.get("http://localhost:5000/get-routes")
@@ -45,7 +45,7 @@ function ManageRoutes() {
       .catch(() => console.log("Failed to load trucks."));
   }, []);
 
-  // ── Filter ──
+  // Filter 
   const filteredRoutes = routes.filter(r =>
     (r.route_ID || "").toLowerCase().includes(search.toLowerCase()) ||
     (r.route_name || "").toLowerCase().includes(search.toLowerCase()) ||
@@ -54,7 +54,7 @@ function ManageRoutes() {
     (r.end_location || "").toLowerCase().includes(search.toLowerCase())
   );
 
-  // ── Helpers ──
+  //  Driver 
   const getDriverName = (driver_ID) => {
     const d = drivers.find(d => (d.driver_ID || d.driver_id) == driver_ID);
     return d ? d.name : driver_ID || "—";
@@ -65,7 +65,7 @@ function ManageRoutes() {
     return t ? t.vehicle_number : truck_ID || "—";
   };
 
-  // Parse "2h 30m" or "1h" or "45m" back into hours and minutes
+  //  hours and minutes
   const parseDuration = (duration) => {
     if (!duration) return { hours: "", minutes: "" };
     let hours = "";
@@ -77,13 +77,13 @@ function ManageRoutes() {
     return { hours, minutes };
   };
 
-  // Format hours + minutes into display string
+  // Format hours , minutes into display 
   const formatDuration = (duration) => {
     if (!duration) return "—";
     return `⏱ ${duration}`;
   };
 
-  // ── Open Edit Modal ──
+  // Open Edit Modal 
   const openEdit = (route) => {
     setSelectedRoute(route);
     const { hours, minutes } = parseDuration(route.estimated_duration);
@@ -118,7 +118,7 @@ function ManageRoutes() {
     setSuccess("");
   };
 
-  // ── Handle Edit Change ──
+  //  Handle Edit Change 
   const handleEditChange = (e) => {
     const { name, value } = e.target;
 
@@ -150,7 +150,7 @@ function ManageRoutes() {
     setEditData(prev => ({ ...prev, [name]: value }));
   };
 
-  // ── Submit Update ──
+  // Submit Update
   const handleUpdate = () => {
     const routeID = selectedRoute?.route_ID;
 
@@ -171,7 +171,7 @@ function ManageRoutes() {
       return;
     }
 
-    // Format duration same way as AddRoute
+    // Format duration 
     let estimated_duration = "";
     if (hours > 0 && minutes > 0) estimated_duration = `${hours}h ${minutes}m`;
     else if (hours > 0) estimated_duration = `${hours}h`;
@@ -248,24 +248,26 @@ function ManageRoutes() {
             <div className="status_label">Search Results</div>
           </div>
           <div className="status_card blue">
-            <div className="status_num">📍</div>
+            <div className="status_num"><i className="bi bi-geo-alt-fill"></i></div>
             <div className="status_label">Active Routes</div>
           </div>
         </div>
 
-        {error && <div className="alert alert_error">⚠ {error}</div>}
-        {success && <div className="alert alert_success">✓ {success}</div>}
+        {error && <div className="alert alert_error"><i className="bi bi-exclamation-triangle-fill me-2"></i>
+          {error}</div>}
+        {success && <div className="alert alert_success"><i className="bi bi-check-circle-fill me-2"></i>
+          {success}</div>}
 
         {/* Search */}
         <div className="search_bar">
-          <span>🔍</span>
+          <span> <i className="bi bi-search"></i></span>
           <input
             type="text"
             placeholder="Search by route ID, name, area or location..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          {search && <button className="clear_btn" onClick={() => setSearch("")}>✕</button>}
+          {search && <button className="clear_btn" onClick={() => setSearch("")}><i className="bi bi-x-lg"></i></button>}
         </div>
 
         {/* Table */}
@@ -274,7 +276,7 @@ function ManageRoutes() {
             <div className="mgr-loading">Loading routes...</div>
           ) : filteredRoutes.length === 0 ? (
             <div className="mgr-empty">
-              <div className="mgr-empty-icon">📍</div>
+              <div className="mgr-empty-icon"> <i className="bi bi-geo-alt-fill"></i></div>
               <p>No routes found</p>
               <span>Try a different search or add a new route</span>
             </div>
@@ -285,7 +287,7 @@ function ManageRoutes() {
                   <th>Route ID</th>
                   <th>Route Name</th>
                   <th>Area</th>
-                  <th>Start → End</th>
+                  <th>Start  <i className="bi bi-arrow-right"></i> End</th>
                   <th>Duration</th>
                   <th>Driver</th>
                   <th>Truck</th>
@@ -307,6 +309,7 @@ function ManageRoutes() {
                     </td>
                     <td>
                       <span className="mgr-duration-badge">
+                        <i className="bi bi-clock me-1"></i>
                         {formatDuration(route.estimated_duration)}
                       </span>
                     </td>
@@ -323,7 +326,7 @@ function ManageRoutes() {
                     </td>
                     <td>
                       <div className="mgr-truck-cell">
-                        <span style={{fontSize:"20px"}}>🚛</span>
+                        <span style={{fontSize:"20px"}}><i className="bi bi-truck"></i></span>
                         <div>
                           <div className="mgr-truck-num">{getTruckNumber(route.truck_ID)}</div>
                           <div className="mgr-truck-id">ID: {route.truck_ID}</div>
@@ -333,10 +336,12 @@ function ManageRoutes() {
                     <td>
                       <div className="mgr-action-btns">
                         <button className="mgr-btn-edit" onClick={() => openEdit(route)}>
-                          ✏ Edit
+                          <i className="bi bi-pencil-square me-1"></i>
+                              Edit
                         </button>
                         <button className="mgr-btn-delete" onClick={() => openDelete(route)}>
-                          🗑 Delete
+                          <i className="bi bi-trash me-1"></i>
+                              Delete
                         </button>
                       </div>
                     </td>
@@ -361,11 +366,11 @@ function ManageRoutes() {
 
             <div className="mgr-modal-header">
               <h3>Edit Route</h3>
-              <button className="mgr-modal-close" onClick={() => setShowModal(false)}>✕</button>
+              <button className="mgr-modal-close" onClick={() => setShowModal(false)}><i className="bi bi-x-lg"></i></button>
             </div>
 
             <div className="mgr-modal-icon-wrap">
-              <div className="mgr-modal-icon">📍</div>
+              <div className="mgr-modal-icon"><i className="bi bi-geo-alt-fill"></i></div>
               <span>Route ID: {selectedRoute?.route_ID}</span>
             </div>
 
@@ -405,7 +410,7 @@ function ManageRoutes() {
                   value={editData.end_location} onChange={handleEditChange} />
               </div>
 
-              {/* Duration — same hours/minutes split as AddRoute */}
+              {/* Duration — same hours/minutes split  */}
               <div className="mgr-form-group mgr-full-width">
                 <label>Estimated Duration</label>
                 <div style={{display:"flex", gap:"10px", alignItems:"center"}}>
@@ -450,20 +455,26 @@ function ManageRoutes() {
                   <option value="">-- Select Truck --</option>
                   {trucks.map(t => (
                     <option key={t.truck_ID} value={t.truck_ID}>
-                      🚛 {t.vehicle_number} — ID: {t.truck_ID}
+                     <i
+                      className="bi bi-truck"
+                    ></i>
+                     {t.vehicle_number} — ID: {t.truck_ID}
                       {t.driver_id ? " ✓ Driver assigned" : " ⚠ No driver"}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Driver Field — same logic as AddRoute */}
+              {/* Driver Field  */}
               <div className="mgr-form-group mgr-full-width">
                 {driverFieldMode === "none" && (
                   <>
                     <label>Assigned Driver</label>
                     <div className="mgr-driver-placeholder">
-                      👆 Please select a truck first
+                      <>
+                        <i className="bi bi-hand-index-thumb me-2"></i>
+                        Please select a truck first
+                      </>
                     </div>
                   </>
                 )}
@@ -481,7 +492,10 @@ function ManageRoutes() {
                           ID: {assignedDriver.driver_ID || assignedDriver.driver_id}
                           &nbsp;·&nbsp;{assignedDriver.phone_no}
                         </div>
-                        <div className="mgr-auto-driver-tag">✓ Auto-filled from truck</div>
+                        <div className="mgr-auto-driver-tag"><>
+                          <i className="bi bi-check-circle-fill me-1"></i>
+                          Auto filled from truck
+                        </></div>
                       </div>
                     </div>
                   </>
@@ -490,16 +504,19 @@ function ManageRoutes() {
                 {driverFieldMode === "select" && (
                   <>
                     <label>Assign Driver
-                      <span className="mgr-label-note"> — Truck has no assigned driver</span>
+                      <span className="mgr-label-note"> Truck has no assigned driver</span>
                     </label>
                     {availableDrivers.length === 0 ? (
-                      <div className="mgr-no-data">⚠ No available drivers.</div>
+                      <div className="mgr-no-data"><>
+                        <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                        No available drivers.
+                      </></div>
                     ) : (
                       <select name="driver_ID" value={editData.driver_ID} onChange={handleEditChange}>
                         <option value="">-- Select Driver --</option>
                         {availableDrivers.map(d => (
                           <option key={d.driver_ID || d.driver_id} value={d.driver_ID || d.driver_id}>
-                            👤 {d.name} — {d.driver_ID || d.driver_id}
+                             {d.name} — {d.driver_ID || d.driver_id}
                           </option>
                         ))}
                       </select>
@@ -530,7 +547,7 @@ function ManageRoutes() {
             </div>
 
             <div className="mgr-delete-body">
-              <div className="mgr-delete-icon">📍</div>
+              <div className="mgr-delete-icon"><i className="bi bi-trash-fill"></i></div>
               <p>Are you sure you want to delete</p>
               <strong>"{deleteTarget?.route_name}"</strong>
               <span>This action cannot be undone.</span>

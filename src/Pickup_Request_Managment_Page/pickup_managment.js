@@ -5,39 +5,28 @@ import "./pickup_managment.css";
 import "../extra_CSS_file.css";
 import AdminNavBar from "../Admin_Navigation_Bar/admin_navigation";
 
-
-
 const STATUS_OPTIONS = ["Pending", "Scheduled", "Completed", "Rejected"];
-
-
 function AdminSpecialRequests() {
     const navigate = useNavigate();
-
     const [requests, setRequests]   =useState([]);
     const [search, setSearch]       =useState("");
     const [loading, setLoading]     =useState(true);
     const [error, setError]         = useState("");
     const [success, setSuccess]     = useState("");
-
     const [showModal, setShowModal] = useState(false);
     const [selectedRequest, setSelectedRequest] =useState(null);
     const [editData, setEditData]   =useState({});
-
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteTarget, setDeleteTarget]   = useState(null);
-
     //fetch
-
         const fetchRequests = () => {
         setLoading(true);
         axios.get("http://localhost:5000/admin/special-requests")
         .then((res) => { setRequests(res.data.success ? res.data.requests : []); setLoading(false); })
         .catch(() => { setError("Failed to load requests."); setLoading(false); });
     };
-
     useEffect(() => { fetchRequests(); }, []);
-
-    // ── Filter ────
+    // Filter 
     const filteredRequests = requests.filter((r) => {
         const q = search.toLowerCase();
         return(
@@ -46,11 +35,9 @@ function AdminSpecialRequests() {
             (r.item_type    || "").toLowerCase().includes(q) ||
             (r.location || "").toLowerCase().includes(q) ||
             (r.status        || "").toLowerCase().includes(q)
-
         );
     });
-    
-    // ── Status badge class ───────────────────────────────────────
+    //  Status badge class 
     const getStatusClass = (status) => {
         switch (status) {
         case "Pending":   return "asr_badge_pending";
@@ -58,11 +45,8 @@ function AdminSpecialRequests() {
         case "Completed": return "asr_badge_completed";
         case "Rejected":  return "asr_badge_rejected";
         default:          return "asr_badge_pending";
-        }
-    };
-
-
-     // ── Open edit modal ──────────────────────────────────────────
+        } };
+     //  Open edit modal 
         const openEdit = (req) => {
             setSelectedRequest(req);
             setEditData({
@@ -74,15 +58,12 @@ function AdminSpecialRequests() {
             setSuccess("");
             setShowModal(true);
         };
-
         const handleEditChange = (e) => {
             setError("");
             const { name, value } = e.target;
             setEditData((prev) => ({ ...prev, [name]: value }));
         };
-
-
-        // ── Submit update ────────────────────────────────────────────
+        // Submit update
     const handleUpdate = () => {
         if (!editData.status) { setError("Please select a status."); return; }
 
@@ -90,7 +71,6 @@ function AdminSpecialRequests() {
         setError("Please provide both schedule date and time when status is Scheduled.");
         return;
         }
-
         axios.patch(`http://localhost:5000/admin/special-requests/${selectedRequest.request_ID}`, editData)
         .then(() => {
             setSuccess(`Request #${selectedRequest.request_ID} updated successfully!`);
@@ -99,10 +79,8 @@ function AdminSpecialRequests() {
         })
         .catch((err) => setError(err.response?.data?.message || "Error updating request."));
     };
-
-    // ── Delete ───────────────────────────────────────────────────
-      const openDelete = (req) => { setDeleteTarget(req); setShowDeleteModal(true); };
-    
+    //  Delete 
+    const openDelete = (req) => { setDeleteTarget(req); setShowDeleteModal(true); };
       const handleDelete = () => {
         axios.delete(`http://localhost:5000/admin/special-requests/${deleteTarget.request_ID}`)
           .then(() => {
@@ -120,7 +98,6 @@ function AdminSpecialRequests() {
         const hour = parseInt(h);
         return `${hour % 12 || 12}:${m} ${hour >= 12 ? "PM" : "AM"}`;
       };
-    
       const countByStatus = (s) => requests.filter((r) => r.status === s).length;
     
 
@@ -139,8 +116,17 @@ function AdminSpecialRequests() {
           </div>
         </div>
 
-        {error   && <div className="alert alert_error">⚠ {error}</div>}
-        {success && <div className="alert alert_success">✓ {success}</div>}
+        {error && (
+          <div className="alert alert_error">
+            <i className="bi bi-exclamation-triangle-fill"></i> {error}
+          </div>
+        )}
+
+        {success && (
+          <div className="alert alert_success">
+            <i className="bi bi-check-circle-fill"></i> {success}
+          </div>
+        )}
 
         {/* ── Stats ── */}
         <div className="status_row">
@@ -164,7 +150,9 @@ function AdminSpecialRequests() {
 
         {/* ── Search ── */}
         <div className="search_bar">
-          <span className="search_icon">🔍</span>
+          <span className="search_icon">
+            <i className="bi bi-search"></i>
+          </span>
           <input
             type="text"
             placeholder="Search by ID, resident, item type, location or status..."
@@ -172,9 +160,12 @@ function AdminSpecialRequests() {
             onChange={(e) => setSearch(e.target.value)}
           />
           {search && (
-            <button className="clear_btn" onClick={() => setSearch("")}>✕</button>
+            <button className="clear_btn" onClick={() => setSearch("")}>
+              <i className="bi bi-x-lg"></i>
+            </button>
           )}
         </div>
+
 
         {/* ── Table ── */}
         <div className="asr_card">
@@ -182,7 +173,9 @@ function AdminSpecialRequests() {
             <div className="asr_loading">Loading requests...</div>
           ) : filteredRequests.length === 0 ? (
             <div className="asr_empty">
-              <div className="asr_empty_icon">🚛</div>
+              <div className="asr_empty_icon">
+                <i className="bi bi-truck"></i>
+              </div>
               <p>No requests found</p>
               <span>Try a different search term</span>
             </div>
@@ -206,9 +199,10 @@ function AdminSpecialRequests() {
                     <td><span className="asr_id_badge">#{r.request_ID}</span></td>
                     <td>
                       <div className="asr_resident_cell">
-                        <div className="asr_avatar">
+                        {/*<div className="asr_avatar">
                           {(r.resident_name || "R")[0].toUpperCase()}
-                        </div>
+                        </div>*/}
+
                         <div>
                           <div className="asr_resident_name">{r.resident_name || "—"}</div>
                           <div className="asr_resident_sub">{r.email}</div>
@@ -239,11 +233,11 @@ function AdminSpecialRequests() {
                       <div className="asr_action_btns">
                         <button className="asr_btn_edit"
                           onClick={(e) => { e.stopPropagation(); openEdit(r); }}>
-                          ✏ Edit
+                          <i className="bi bi-pencil-square"></i> Edit
                         </button>
                         <button className="asr_btn_delete"
                           onClick={(e) => { e.stopPropagation(); openDelete(r); }}>
-                          🗑 Delete
+                          <i className="bi bi-trash3-fill"></i> Delete
                         </button>
                       </div>
                     </td>
@@ -268,11 +262,13 @@ function AdminSpecialRequests() {
 
             <div className="asr_modal_header">
               <h3>Update Request</h3>
-              <button className="asr_modal_close" onClick={() => setShowModal(false)}>✕</button>
+              <button className="asr_modal_close" onClick={() => setShowModal(false)}><i className="bi bi-x-lg"></i></button>
             </div>
 
             <div className="asr_modal_banner">
-              <span className="asr_modal_banner_icon">🚛</span>
+              <span className="asr_modal_banner_icon">
+                <i className="bi bi-truck"></i>
+              </span>
               <div>
                 <div className="asr_modal_banner_id">Request #{selectedRequest?.request_ID}</div>
                 <div className="asr_modal_banner_sub">
@@ -281,7 +277,11 @@ function AdminSpecialRequests() {
               </div>
             </div>
 
-            {error && <div className="asr_alert asr_alert_error asr_modal_alert">⚠ {error}</div>}
+            {error && (
+              <div className="asr_alert asr_alert_error asr_modal_alert">
+                <i className="bi bi-exclamation-triangle-fill"></i> {error}
+              </div>
+            )}
 
             <div className="asr_modal_body">
 
@@ -320,7 +320,9 @@ function AdminSpecialRequests() {
               {/* Hint when Scheduled is selected */}
               {editData.status === "Scheduled" && (
                 <div className="asr_schedule_hint">
-                  📅 Both date and time are required when setting status to <strong>Scheduled</strong>.
+                  <i className="bi bi-calendar-event"></i>{" "}
+                  Both date and time are required when setting status to{" "}
+                  <strong>Scheduled</strong>.
                 </div>
               )}
 
@@ -346,7 +348,9 @@ function AdminSpecialRequests() {
             </div>
 
             <div className="asr_delete_body">
-              <div className="asr_delete_icon">🗑️</div>
+              <div className="asr_delete_icon">
+                <i className="bi bi-trash3-fill"></i>
+              </div>
               <p>Are you sure you want to delete</p>
               <strong>Request #{deleteTarget?.request_ID}</strong>
               <span>{deleteTarget?.item_type} · {deleteTarget?.resident_name}</span>

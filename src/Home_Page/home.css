@@ -130,6 +130,21 @@
   top: 130px;
   left: 120px;
 }
+/*emergency alert*/
+.emergency-alert-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 2px;
+}
+
+.alert-meta {
+  display: block;
+  margin-top: 4px;
+  color: #94a3b8;
+  font-size: 0.75rem;
+}
 
 /* Feature Cards */
 .feature-card {

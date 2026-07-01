@@ -4,59 +4,44 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ResidentLogin() {
-
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     role: "Resident"
   });
-
   const [error, setError] = useState("");
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-
     setError("");
   };
-
   const handleLogin = (e) => {
     e.preventDefault();
-
     axios.post("http://localhost:5000/login", formData)
       .then((res) => {
-
         if (res.data.success) {
-
           localStorage.setItem(
             "user",
             JSON.stringify(res.data.user)
           );
-
           localStorage.setItem(
             "role",
             res.data.role
           );
-
           alert(`Welcome, ${res.data.user.name}!`);
-
           if (res.data.role === "Admin") {
-            navigate("/admin/home");
-
+            navigate("/Admin_Dashboard");
           } else if (res.data.role === "Collector") {
-            navigate("/driver/home");
-
+            navigate("/driver_dashboard");
           } else {
             navigate("/home");
           }
         }
       })
       .catch((err) => {
-
         if (
           err.response &&
           err.response.status === 401
@@ -69,31 +54,23 @@ function ResidentLogin() {
             "Server error. Please try again later."
           );
         }
-
         console.log(err);
       });
   };
-
   return (
     <div className="login-page d-flex justify-content-center align-items-center">
-
       <div className="login-card shadow">
-
         <h2 className="text-center title">
           CleanLand
         </h2>
-
         <p className="text-center subtitle">
           Garbage Management System
         </p>
-
         <form onSubmit={handleLogin}>
-
           <div className="mb-3">
             <label className="form-label">
               Email Address
             </label>
-
             <input
               type="email"
               name="email"
@@ -104,12 +81,10 @@ function ResidentLogin() {
               required
             />
           </div>
-
           <div className="mb-3">
             <label className="form-label">
               Password
             </label>
-
             <input
               type="password"
               name="password"
@@ -120,12 +95,11 @@ function ResidentLogin() {
               required
             />
           </div>
-
           <div className="mb-3 text-center">
             <label className="form-label-center">
               Login As
             </label>
-
+<br/>
             <select
               name="role"
               className="form-select"
@@ -137,7 +111,6 @@ function ResidentLogin() {
               <option>Collector</option>
             </select>
           </div>
-
           {error && (
             <div
               className="alert alert-danger py-2"
@@ -146,26 +119,21 @@ function ResidentLogin() {
               {error}
             </div>
           )}
-
           <button
             type="submit"
             className="btn login-btn w-100 mb-2"
           >
             LOGIN
           </button>
-
           <p className="mt-2 text-center">
             Don't have an account?
             <Link to="/">
               Sign Up
             </Link>
           </p>
-
         </form>
-
       </div>
     </div>
   );
 }
-
 export default ResidentLogin;

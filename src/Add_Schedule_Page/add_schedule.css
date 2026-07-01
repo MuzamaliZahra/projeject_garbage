@@ -49,6 +49,7 @@
 .as_card_icon {
     font-size: 48px;
     margin-bottom: 8px;
+    color: #d30808;
 }
 
 .as_card_label {
@@ -264,7 +265,8 @@
 .as_availability.checking {
     background: #fff8e1;
     color: #f57f17;
-    border: 1px solid #ffe082;
+    border: 1px soli
+    d #ffe082;
 }
 
 .as_availability.ok {
@@ -477,16 +479,12 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    
 }
 
 .as_btn_submit:hover:not(:disabled) { background: #148f59; }
 
-.as_btn_submit:disabled {
-    background: #aaa;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
+
 
 .as_route_availability_hint {
     font-size: 12px;

@@ -68,8 +68,7 @@
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+
 }
 
 
@@ -85,8 +84,7 @@
   padding: 6px 12px;
   font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
+
 }
 
 .bm_btn_delete:hover { 
@@ -143,7 +141,7 @@
     border: none;
     font-size: 16px;
     color: #999;
-    cursor: pointer;
+
 }
 
 .bm_modal_close:hover{
@@ -294,7 +292,7 @@
     color: #fff;
     font-size: 14px;
     font-weight: 600;
-    cursor: pointer;
+    
 }
  
 .bm_btn_confirm_delete:hover{

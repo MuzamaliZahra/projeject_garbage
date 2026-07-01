@@ -189,19 +189,28 @@ return(
                 </div>
 
                 <div className="status_card blue">
-                    <div className="status_num">👥</div>
+                    <div className="status_num"> <i className="bi bi-people-fill"></i></div>
                     <div className="status_label">Community Members</div>
                 </div>
             </div>
 
 
             {/* Alerts */}
-            {error && <div className="mr-alert mr-alert-error">⚠ {error}</div>}
-            {success && <div className="mr-alert mr-alert-success">✓ {success}</div>}
+            {error && (
+              <div className="mr-alert mr-alert-error">
+                <i className="bi bi-exclamation-triangle-fill"></i> {error}
+              </div>
+            )}
+
+            {success && (
+              <div className="mr-alert mr-alert-success">
+                <i className="bi bi-check-circle-fill"></i> {success}
+              </div>
+            )}
 
             {/* Search Bar */}
             <div className="mr-search-bar">
-                <span className="mr-search-icon">🔍</span>
+                <span className="mr-search-icon"><i className="bi bi-search"></i></span>
                 <input
                     type="text"
                     placeholder="search by name,email,phone or address.."
@@ -210,7 +219,12 @@ return(
                 />
 
                 {search && (
-                    <button className="mr-clear-btn" onClick={() => setSearch("")}>✕</button>
+                    <button
+                      className="mr-clear-btn"
+                      onClick={() => setSearch("")}
+                    >
+                      <i className="bi bi-x-lg"></i>
+                    </button>
                 )}      
          
             </div>
@@ -221,7 +235,7 @@ return(
             <div className="mr-loading">Loading residents...</div>
           ) : filteredResidents.length === 0 ? (
             <div className="mr-empty">
-              <div className="mr-empty-icon">👥</div>
+              <div className="mr-empty-icon"><i className="bi bi-people-fill"></i></div>
               <p>No residents found</p>
               <span>Try a different search term</span>
             </div>
@@ -258,13 +272,13 @@ return(
                           className="mr-btn-edit"
                           onClick={() => openEdit(resident)}
                         >
-                          ✏ Edit
+                         <i className="bi bi-pencil-square"></i> Edit
                         </button>
                         <button
                           className="mr-btn-delete"
                           onClick={() => openDelete(resident)}
                         >
-                          🗑 Delete
+                           <i className="bi bi-trash"></i> Delete
                         </button>
                       </div>
                     </td>
@@ -294,7 +308,7 @@ return(
 
             <div className="mr-modal-header">
               <h3>Edit Resident</h3>
-              <button className="mr-modal-close" onClick={() => setShowModal(false)}>✕</button>
+              <button className="mr-modal-close" onClick={() => setShowModal(false)}> <i className="bi bi-x-lg"></i></button>
             </div>
 
             <div className="mr-modal-avatar">
@@ -302,8 +316,11 @@ return(
               <span>ID: {getResidentId(selectedResident)}</span>
             </div>
 
-            {error && <div className="mr-alert mr-alert-error">⚠ {error}</div>}
-
+            {error && (
+              <div className="mr-alert mr-alert-error">
+                <i className="bi bi-exclamation-triangle-fill"></i> {error}
+              </div>
+            )}
             <div className="mr-modal-body">
               <div className="mr-form-group">
                 <label>Full Name</label>
@@ -367,7 +384,7 @@ return(
             </div>
 
             <div className="mr-delete-body">
-              <div className="mr-delete-icon">👤</div>
+              <div className="mr-delete-icon"><i className="bi bi-person-x-fill"></i></div>
               <p>Are you sure you want to delete</p>
               <strong>"{deleteTarget?.name}"</strong>
               <span>This action cannot be undone.</span>

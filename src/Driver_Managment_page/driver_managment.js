@@ -6,28 +6,22 @@ import "../extra_CSS_file.css";
 import AdminNavBar from "../Admin_Navigation_Bar/admin_navigation";
 
 function ManageDrivers() {
-
   const navigate = useNavigate();
-
   const [drivers, setDrivers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
   const [showModal, setShowModal] = useState(false);
   const [selectedDriver, setSelectedDriver] = useState(null);
   const [editData, setEditData] = useState({});
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null);
-
 
   const getDriverId = (driver) => {
     if (!driver) return null;
     return driver.driver_ID || driver.driver_id || driver.id || null;
   };
-
   // Fetch  drivers
   const fetchDrivers = () => {
     setLoading(true);
@@ -40,13 +34,10 @@ function ManageDrivers() {
       .catch(() => {
         setError("Failed to load drivers.");
         setLoading(false);
-      });
-  };
-
+      });  };
   useEffect(() => {
     fetchDrivers();
   }, []);
-
   // Filter drivers 
   const filteredDrivers = drivers.filter(d =>
     d.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -54,7 +45,6 @@ function ManageDrivers() {
     (getDriverId(d) || "").toString().toLowerCase().includes(search.toLowerCase()) ||
     d.license_no.toLowerCase().includes(search.toLowerCase())
   );
-
   // Open edit modal
   const openEdit = (driver) => {
     console.log("Opening edit for driver:", driver);
@@ -70,12 +60,10 @@ function ManageDrivers() {
     setError("");
     setSuccess("");
   };
-
   // Handle edit input change
   const handleEditChange = (e) => {
     setEditData({ ...editData, [e.target.name]: e.target.value });
   };
-
   // Submit edit
   const handleUpdate = () => {
     const driverID = getDriverId(selectedDriver);
@@ -104,13 +92,11 @@ function ManageDrivers() {
         setError(err.response?.data || "Error updating driver.");
       });
   };
-
   // Open delete confirm 
   const openDelete = (driver) => {
     setDeleteTarget(driver);
     setShowDeleteModal(true);
   };
-
   // Confirm delete
   const handleDelete = () => {
     const driverID = getDriverId(deleteTarget);
@@ -125,7 +111,6 @@ function ManageDrivers() {
         setShowDeleteModal(false);
       });
   };
-
   const getInitials = (name) => {
     if (!name) return "DR";
     const parts = name.trim().split(" ");
@@ -163,7 +148,7 @@ function ManageDrivers() {
             <div className="status_label">Search Results</div>
           </div>
           <div className="status_card blue">
-            <div className="status_num">🚛</div>
+            <i className="bi bi-truck"></i>
             <div className="status_label">Active Fleet</div>
           </div>
         </div>
@@ -172,7 +157,9 @@ function ManageDrivers() {
         
         {/* Search Bar */}
         <div className="search_bar">
-          <span className="search_icon">🔍</span>
+          <span className="search_icon">
+            <i className="bi bi-search"></i>
+          </span>
           <input
             type="text"
             placeholder="Search by name, email, ID or license..."
@@ -180,7 +167,9 @@ function ManageDrivers() {
             onChange={(e) => setSearch(e.target.value)}
           />
           {search && (
-            <button className="clear_btn" onClick={() => setSearch("")}>✕</button>
+            <button className="clear_btn" onClick={() => setSearch("")}>
+              <i className="bi bi-x-lg"></i>
+            </button>
           )}
         </div>
 
@@ -190,7 +179,9 @@ function ManageDrivers() {
             <div className="md-loading">Loading drivers...</div>
           ) : filteredDrivers.length === 0 ? (
             <div className="md-empty">
-              <div className="md-empty-icon">🚛</div>
+              <div className="md-empty-icon">
+                <i className="bi bi-truck"></i>
+              </div>
               <p>No drivers found</p>
               <span>Try a different search or add a new driver</span>
             </div>
@@ -227,13 +218,13 @@ function ManageDrivers() {
                           className="md-btn-edit"
                           onClick={() => openEdit(driver)}
                         >
-                          ✏ Edit
+                          <i className="bi bi-pencil-square"></i> Edit
                         </button>
                         <button
                           className="md-btn-delete"
                           onClick={() => openDelete(driver)}
                         >
-                          🗑 Delete
+                          <i className="bi bi-trash"></i> Delete
                         </button>
                       </div>
                     </td>
@@ -259,7 +250,7 @@ function ManageDrivers() {
 
             <div className="md-modal-header">
               <h3>Edit Driver</h3>
-              <button className="md-modal-close" onClick={() => setShowModal(false)}>✕</button>
+              <button className="md-modal-close" onClick={() => setShowModal(false)}> <i className="bi bi-x-lg"></i></button>
             </div>
 
             <div className="md-modal-avatar">
@@ -267,7 +258,11 @@ function ManageDrivers() {
               <span>ID: {getDriverId(selectedDriver)}</span>
             </div>
 
-            {error && <div className="md-alert md-alert-error">⚠ {error}</div>}
+            {error && (
+              <div className="md-alert md-alert-error">
+                <i className="bi bi-exclamation-triangle-fill"></i> {error}
+              </div>
+            )}
 
             <div className="md-modal-body">
               <div className="md-form-group">
@@ -328,11 +323,15 @@ function ManageDrivers() {
 
             <div className="md-modal-header">
               <h3>Delete Driver</h3>
-              <button className="md-modal-close" onClick={() => setShowDeleteModal(false)}>✕</button>
+              <button className="md-modal-close" onClick={() => setShowDeleteModal(false)}>
+                <i className="bi bi-x-lg"></i>
+              </button>
             </div>
 
             <div className="md-delete-body">
-              <div className="md-delete-icon">🗑️</div>
+              <div className="md-delete-icon">
+                <i className="bi bi-trash3-fill"></i>
+              </div>
               <p>Are you sure you want to delete</p>
               <strong>"{deleteTarget?.name}"</strong>
               <span>This action cannot be undone.</span>

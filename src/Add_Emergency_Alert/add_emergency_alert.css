@@ -1,0 +1,194 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.ea_page {
+  min-height: 100vh;
+  background: #f6f7f6;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.ea_body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.ea_page_header { margin-bottom: 1.5rem; }
+.ea_page_header h2 { font-size: 26px; font-weight: 700; color: #131111; margin-bottom: 4px; }
+.ea_page_header p  { font-size: 14px; color: #6b7280; }
+
+.ea_alert { padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 1rem; font-weight: 500; }
+.ea_alert_error   { background: #fef2f2; color: #b71c1c; border: 1px solid #fecaca; }
+.ea_alert_success { background: #f0fdf4; color: #14532d; border: 1px solid #bbf7d0; }
+
+.ea_card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #fecaca;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.08);
+}
+/* Card header — matches add-driver's quieter style */
+.ea_card_header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1.25rem 2rem;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
+.ea_card_icon  { font-size: 18px; }
+.ea_card_label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Form */
+.ea_form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ea_form_row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ea_form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.ea_form_group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.ea_form_group input,
+.ea_form_group select {
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+}
+
+.ea_form_group textarea {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+  resize: vertical;
+}
+
+.ea_form_group input:focus,
+.ea_form_group select:focus,
+.ea_form_group textarea:focus {
+  border-color: #1aaa6b;
+  box-shadow: 0 0 0 3px rgba(26, 170, 107, 0.12);
+}
+
+.ea_form_group input::placeholder,
+.ea_form_group textarea::placeholder {
+  color: #bbb;
+}
+
+/* Toggle */
+.ea_toggle_wrap {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s;
+}
+.ea_toggle_wrap:hover { border-color: #1aaa6b; }
+
+.ea_toggle_sw {
+  width: 38px; height: 20px;
+  border-radius: 10px;
+  background: #d1d5db;
+  position: relative;
+  transition: background 0.25s;
+  flex-shrink: 0;
+}
+.ea_toggle_sw.on { background: #1aaa6b; }
+.ea_toggle_knob {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 3px; left: 3px;
+  transition: left 0.25s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.ea_toggle_sw.on .ea_toggle_knob { left: 21px; }
+.ea_toggle_lbl  { font-size: 13px; font-weight: 600; color: #374151; }
+.ea_toggle_hint { font-size: 11px; color: #9ca3af; margin-left: auto; }
+
+/* Buttons */
+.ea_btn_row {
+  display: flex;
+  gap: 12px;
+  margin-top: 0.5rem;
+}
+
+.ea_btn_cancel {
+  flex: 1;
+  height: 46px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ea_btn_cancel:hover { background: #e2e2e2; }
+
+.ea_btn_submit {
+  flex: 2;
+  height: 46px;
+  background: #1aaa6b;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ea_btn_submit:hover    { background: #148f59; }
+.ea_btn_submit:disabled { background: #9ca3af; cursor: not-allowed; }
+
+@media (max-width: 520px) {
+  .ea_form_row { grid-template-columns: 1fr; }
+  .ea_card_header,
+  .ea_form     { padding: 1.25rem; }
+}

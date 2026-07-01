@@ -4,6 +4,7 @@ import axios from "axios";
 import "./add_truck.css";
 import "../extra_CSS_file.css";
 import AdminNavBar from "../Admin_Navigation_Bar/admin_navigation";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function AddTruck() {
 
@@ -53,8 +54,12 @@ function AddTruck() {
     axios.post("http://localhost:5000/add-truck", formData)
       .then(() => {
         setSuccess(`Truck "${formData.vehicle_number}" added successfully!`);
-        setFormData({ truck_ID: "", vehicle_number: "", driver_id: "" });
-        // Refresh available drivers so the assigned one disappears
+        setFormData({
+          truck_ID: "",
+          vehicle_number: "",
+          driver_id: ""
+        });
+
         fetchAvailableDrivers();
       })
       .catch(err => {
@@ -65,7 +70,8 @@ function AddTruck() {
   return (
     <div className="at-page">
 
-       <AdminNavBar/>
+      <AdminNavBar />
+
       <div className="at-body">
 
         {/* Page Title */}
@@ -77,15 +83,23 @@ function AddTruck() {
         {/* Stats Row */}
         <div className="status_row">
           <div className="status_card green">
-            <div className="status_num">🚛</div>
+            <div className="status_num">
+              <i className="bi bi-truck"></i>
+            </div>
             <div className="status_label">New Truck</div>
           </div>
+
           <div className="status_card orange">
-            <div className="status_num">{availableDrivers.length}</div>
+            <div className="status_num">
+              {availableDrivers.length}
+            </div>
             <div className="status_label">Available Drivers</div>
           </div>
+
           <div className="status_card blue">
-            <div className="status_num">✅</div>
+            <div className="status_num">
+              <i className="bi bi-check-circle-fill"></i>
+            </div>
             <div className="status_label">Save to System</div>
           </div>
         </div>
@@ -94,12 +108,26 @@ function AddTruck() {
         <div className="at-card">
 
           <div className="at-truck-icon-wrap">
-            <div className="at-truck-icon">🚛</div>
-            <div className="at-truck-label">Truck Registration</div>
+            <div className="at-truck-icon">
+              <i className="bi bi-truck-front-fill"></i>
+            </div>
+            <div className="at-truck-label">
+              Truck Registration
+            </div>
           </div>
 
-          {error && <div className="at-alert at-alert-error">⚠ {error}</div>}
-          {success && <div className="at-alert at-alert-success">✓ {success}</div>}
+          {/* Alerts */}
+          {error && (
+            <div className="at-alert at-alert-error">
+              <i className="bi bi-exclamation-triangle-fill"></i> {error}
+            </div>
+          )}
+
+          {success && (
+            <div className="at-alert at-alert-success">
+              <i className="bi bi-check-circle-fill"></i> {success}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit}>
 
@@ -115,6 +143,7 @@ function AddTruck() {
                   required
                 />
               </div>
+
               <div className="at-form-group">
                 <label>Vehicle Number</label>
                 <input
@@ -130,26 +159,40 @@ function AddTruck() {
 
             <div className="at-form-group">
               <label>Assign Driver</label>
+
               {loadingDrivers ? (
-                <div className="at-loading-drivers">Loading available drivers...</div>
-              ) : availableDrivers.length === 0 ? (
-                <div className="at-no-drivers">
-                  ⚠ No available drivers. All drivers are already assigned to trucks.
+                <div className="at-loading-drivers">
+                  <i className="bi bi-arrow-repeat"></i>{" "}
+                  Loading available drivers...
                 </div>
+
+              ) : availableDrivers.length === 0 ? (
+
+                <div className="at-no-drivers">
+                  <i className="bi bi-exclamation-triangle-fill"></i>{" "}
+                  No available drivers. All drivers are already assigned to trucks.
+                </div>
+
               ) : (
+
                 <select
                   name="driver_id"
                   value={formData.driver_id}
                   onChange={handleChange}
                   required
                 >
-                  <option value="">-- Select a Driver --</option>
+                  <option value="">
+                    -- Select a Driver --
+                  </option>
+
                   {availableDrivers.map(driver => (
                     <option
                       key={driver.driver_ID || driver.driver_id}
                       value={driver.driver_ID || driver.driver_id}
                     >
-                      {driver.name} — {driver.driver_ID || driver.driver_id} — {driver.phone_no}
+                      {driver.name} —{" "}
+                      {driver.driver_ID || driver.driver_id} —{" "}
+                      {driver.phone_no}
                     </option>
                   ))}
                 </select>
@@ -159,13 +202,22 @@ function AddTruck() {
             {/* Selected Driver Preview */}
             {formData.driver_id && (
               <div className="at-driver-preview">
-                <div className="at-driver-preview-icon">👤</div>
+
+                <div className="at-driver-preview-icon">
+                  <i className="bi bi-person-circle"></i>
+                </div>
+
                 <div>
                   <div className="at-driver-preview-name">
-                    {availableDrivers.find(d =>
-                      (d.driver_ID || d.driver_id) == formData.driver_id
-                    )?.name}
+                    {
+                      availableDrivers.find(
+                        d =>
+                          (d.driver_ID || d.driver_id) ==
+                          formData.driver_id
+                      )?.name
+                    }
                   </div>
+
                   <div className="at-driver-preview-id">
                     Driver ID: {formData.driver_id}
                   </div>
@@ -174,6 +226,7 @@ function AddTruck() {
             )}
 
             <div className="at-btn-row">
+
               <button
                 type="button"
                 className="at-btn-cancel"
@@ -181,13 +234,15 @@ function AddTruck() {
               >
                 Cancel
               </button>
+
               <button
                 type="submit"
                 className="at-btn-submit"
                 disabled={availableDrivers.length === 0}
               >
-                🚛 Add Truck
+                 Add Truck
               </button>
+
             </div>
 
           </form>

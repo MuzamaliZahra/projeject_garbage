@@ -1,11 +1,18 @@
 import React from "react";
 import {Navbar,Nav,NavDropdown,Form,FormControl} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  faMagnifyingGlass,faUser,faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { useNavigate } from "react-router-dom";
 
 import "./Naviation.css";
 
 function NavBar() {
+
+  const navigate = useNavigate();
   
 
   return (
@@ -33,10 +40,17 @@ function NavBar() {
 
   <div className="navBarRight">
     <ul className="navBarLinks">
-      <li>Collection Schedule</li>
-      <li>Complaints</li>
+     
+             <a href="/home" className="navBarItem">
+                Home
+            </a>
+        
+
+      <li>About</li>
       <li>Contact</li>
 
+       
+          
       <NavDropdown title="Services">
         <NavDropdown.Item href="/collection_schedule">Collection Schedule</NavDropdown.Item>
         <NavDropdown.Item href="/complaints">Complaints</NavDropdown.Item>
@@ -48,7 +62,34 @@ function NavBar() {
         <NavDropdown.Item href="/pickup_request">Special Pickup Request</NavDropdown.Item>
       </NavDropdown>
 
-      <button className="loginButton">Login</button>
+      
+          <NavDropdown
+            title={
+              <span className="profileTrigger">
+                <span className="avatar">RS</span>
+              </span>
+            }
+            align="end"
+            className="profileDropdown"
+          >
+            <NavDropdown.Header>
+              <div className="profileInfo">
+                <strong>Resident </strong>
+              </div>
+
+            </NavDropdown.Header>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="/profile">
+              <FontAwesomeIcon icon={faUser} className="me-2" /> My Profile
+            </NavDropdown.Item>
+            
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={() => navigate("/login")} className="logoutItem">
+              <FontAwesomeIcon icon={faRightFromBracket} className="me-2" /> Logout
+            </NavDropdown.Item>
+          </NavDropdown>
+
+      
     </ul>
   </div>
 </nav>

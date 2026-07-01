@@ -1,10 +1,6 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import SignUp from './Signup_Page/signup';
-
 import Home from './Home_Page/home';
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ResidentLogin from './Login_Page/login';
 import ResidentDashboard from './Resident_dashboard/resident_dashboard';
@@ -33,15 +29,15 @@ import ManageContent from './Content_Management_Page/content_managment';
 import AdminFeedback from './Feedback_Management_Page/feedback_management';
 import ComplaintManagementAdmin from './Complaint_Managment_Page/complaint_managment';
 import SpecialRequest from './Special_Pickup_Request_Page/pickup_request';
-import AdminSpecialRequests from './Pickup_Request_Managment_Page/pickup_managment'
-
+import AdminSpecialRequests from './Pickup_Request_Managment_Page/pickup_managment';
+import AddEmergencyAlert from './Add_Emergency_Alert/add_emergency_alert';
+import ManageEmergencyAlerts from './Emergency_alert_Management/emergency_alert_managment';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-       
+      <Routes>       
       <Route path="/home" element={<Home />} />
         <Route path="/" element={<SignUp />} />
         <Route path="/login" element={<ResidentLogin/>} />
@@ -53,8 +49,7 @@ function App() {
          <Route path="/Feedback" element={<Feedback/>} />
          <Route path="/Admin_Dashboard" element={<AdminDashboard/>} />
          <Route path="/driver_dashboard" element={<Drivr_dashboard/>} />
-         <Route path="/add_driver" element= {<AddDriver/>} />
-       
+         <Route path="/add_driver" element= {<AddDriver/>} />      
         <Route path="/driver_managment" element= {<ManageDrivers/>} /> 
         <Route path="/resident_managment" element= {<ManageResidents/>} />
         <Route path="/add_truck" element= {<AddTruck/>} />
@@ -72,20 +67,11 @@ function App() {
         <Route path="/feedback_management" element= {<AdminFeedback/>} />
         <Route path="/complaint_managment" element= {<ComplaintManagementAdmin/>} />
         <Route path="/pickup_request" element= {<SpecialRequest/>} />
-         <Route path="/pickup_managment" element= {<AdminSpecialRequests/>} />
-
-
-
-
-    
-       
+        <Route path="/pickup_managment" element= {<AdminSpecialRequests/>} />
+        <Route path="/add_emergency_alert" element= {<AddEmergencyAlert/>} />    
+        <Route path="/emergency_alert_managment" element= {<ManageEmergencyAlerts/>} />    
       </Routes>
     </BrowserRouter>
-  );
-}
-
-
-
-
+  );}
 export default App;
  

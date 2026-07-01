@@ -1,8 +1,8 @@
-/* ── schedule_management.css ── */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── PAGE ── */
+/* { box-sizing: border-box; margin: 0; padding: 0; } */
+
+/* PAGE */
 .ms_page {
   min-height: 100vh;
   background-color: #f4f6f8;
@@ -10,7 +10,7 @@
   padding: 20px;
 }
 
-/* ── TABLE CARD ── */
+/* TABLE CARD */
 .ms_card {
   background: #fff;
   border-radius: 14px;
@@ -19,7 +19,7 @@
   box-shadow: 0 2px 12px rgba(0,0,0,0.07);
 }
 
-/* ── TABLE ── */
+/* TABLE  */
 .ms_table { width: 100%; border-collapse: collapse; }
 
 .ms_table thead tr {
@@ -37,7 +37,7 @@
 
 .ms_table tbody tr {
   border-bottom: 1px solid #f0f0f0;
-  transition: background 0.15s;
+
 }
 .ms_table tbody tr:hover    { background: #fafafa; }
 .ms_table tbody tr:last-child { border-bottom: none; }
@@ -51,7 +51,7 @@
   z-index: 1;
 }
 
-/* ── ID BADGE ── */
+/* ID BADGE */
 .ms_id_badge {
   background: #e8f5e9;
   color: #1b5e20;
@@ -61,7 +61,7 @@
   font-weight: 600;
 }
 
-/* ── DAY BADGE ── */
+/* DAY BADGE */
 .ms_day_badge {
   background: #f3e8ff;
   color: #7c3aed;
@@ -71,7 +71,7 @@
   font-weight: 600;
 }
 
-/* ── TIME BADGE ── */
+/*TIME BADG */
 .ms_time_badge {
   display: inline-flex;
   align-items: center;
@@ -84,7 +84,7 @@
   font-weight: 600;
 }
 
-/* ── STATUS BADGE ── */
+/*  STATUS BADGE  */
 .ms_status_badge {
   display: inline-block;
   padding: 4px 12px;
@@ -95,7 +95,7 @@
 .ms_badge_active   { background: #e8f5e9; color: #1b5e20; }
 .ms_badge_inactive { background: #f3f4f6; color: #6b7280; }
 
-/* ── ROUTE CELL ── */
+/*  ROUTE CELL  */
 .ms_route_cell {
   display: flex;
   align-items: center;
@@ -118,12 +118,11 @@
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s;
   white-space: nowrap;
 }
 .ms_btn_route:hover { background: #dbeafe; }
 
-/* ── ACTION BUTTONS ── */
+/*  ACTION BUTTONS  */
 .ms_action_btns { display: flex; gap: 8px; }
 
 .ms_btn_edit {
@@ -135,7 +134,7 @@
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+
 }
 .ms_btn_edit:hover { background: #fff3cd; }
 
@@ -148,11 +147,11 @@
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+
 }
 .ms_btn_delete:hover { background: #ffebee; }
 
-/* ── LOADING / EMPTY ── */
+/*  LOADING / EMPTY  */
 .ms_loading { padding: 3rem; text-align: center; color: #888; font-size: 14px; }
 
 .ms_empty       { padding: 3rem; text-align: center; }
@@ -160,10 +159,10 @@
 .ms_empty p     { font-size: 16px; font-weight: 600; color: #444; }
 .ms_empty span  { font-size: 13px; color: #999; }
 
-/* ── COUNT ── */
+/*  COUNT  */
 .ms_count { text-align: right; font-size: 13px; color: #999; margin-top: 10px; }
 
-/* ── MODAL OVERLAY ── */
+/*  MODAL OVERLAY  */
 .ms_modal_overlay {
   position: fixed;
   inset: 0;
@@ -174,7 +173,7 @@
   z-index: 1000;
 }
 
-/* ── MODAL ── */
+/*  MODAL  */
 .ms_modal {
   background: #fff;
   border-radius: 16px;
@@ -188,7 +187,7 @@
 
 .ms_modal_sm { max-width: 360px; }
 
-/* ── MODAL HEADER ── */
+/*  MODAL HEADER  */
 .ms_modal_header {
   display: flex;
   justify-content: space-between;
@@ -207,7 +206,7 @@
 }
 .ms_modal_close:hover { color: #333; }
 
-/* ── MODAL BANNER ── */
+/*  MODAL BANNER  */
 .ms_modal_banner {
   display: flex;
   flex-direction: column;
@@ -219,7 +218,7 @@
 .ms_modal_banner_id   { font-size: 15px; font-weight: 700; color: #1a1a1a; }
 .ms_modal_banner_sub  { font-size: 12px; color: #888; font-weight: 600; }
 
-/* ── MODAL BODY ── */
+/*  MODAL BODY  */
 .ms_modal_body {
   padding: 1rem 1.5rem;
   display: flex;
@@ -227,7 +226,7 @@
   gap: 1rem;
 }
 
-/* ── FORM GROUPS ── */
+/*  FORM GROUPS  */
 .ms_form_group { display: flex; flex-direction: column; gap: 6px; }
 
 .ms_form_group label { font-size: 12px; font-weight: 600; color: #555; }
@@ -269,7 +268,7 @@
   margin-top: 4px;
 }
 
-/* ── ROUTE LINK ── */
+/*  ROUTE LINK  */
 .ms_route_link {
   background: #e8f0fe;
   border: 1px solid #bfdbfe;
@@ -279,12 +278,11 @@
   font-size: 13px;
   color: #1a56db;
   font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s;
+ 
 }
 .ms_route_link:hover { background: #dbeafe; }
 
-/* ── MODAL FOOTER ── */
+/*  MODAL FOOTER  */
 .ms_modal_footer {
   display: flex;
   gap: 10px;
@@ -317,7 +315,7 @@
 }
 .ms_btn_save:hover { background: #148f59; }
 
-/* ── DELETE MODAL BODY ── */
+/*  DELETE MODAL BODY  */
 .ms_delete_body {
   padding: 1.5rem;
   text-align: center;
@@ -327,7 +325,7 @@
   gap: 8px;
 }
 
-.ms_delete_icon        { font-size: 40px; margin-bottom: 6px; }
+.ms_delete_icon        { font-size: 40px; }
 .ms_delete_body p      { font-size: 15px; color: #444; }
 .ms_delete_body strong { font-size: 16px; color: #1a1a1a; }
 .ms_delete_body span   { font-size: 13px; color: #999; }
@@ -346,7 +344,6 @@
 }
 .ms_btn_confirm_delete:hover { background: #c62828; }
 
-/* ── Add these to your existing schedule_management.css ── */
 
 /* Day pills in edit modal */
 .ms_day_pills {
@@ -357,13 +354,14 @@
 }
 
 .ms_day_pill {
+  color: #1a1a1a;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 6px 12px;
   border: 2px solid #ddd;
   border-radius: 8px;
-  background: #f9f9f9;
+  background: #dee6e7;
   cursor: pointer;
   font-size: 13px;
   transition: all 0.15s ease;
@@ -451,7 +449,7 @@
   line-height: 1.5;
 }
 
-/* ── RESPONSIVE ── */
+/*  RESPONSIVE  */
 @media (max-width: 768px) {
   .ms_stats_row  { grid-template-columns: 1fr 1fr; }
   .ms_page_header { flex-direction: column; align-items: flex-start; gap: 12px; }

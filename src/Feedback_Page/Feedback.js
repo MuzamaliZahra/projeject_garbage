@@ -10,24 +10,39 @@ const getResidentID = () => {
     return JSON.parse(localStorage.getItem("user") || "{}").id || null;
   } catch { return null; }
 };
-
 const StarRating = ({ value, onChange, readonly = false }) => {
-  const [hovered, setHovered] = useState(0);
-  const activeStars = readonly ? parseInt(value) : (hovered || parseInt(value));
+  const [selected, setSelected] = useState(parseInt(value) || 0);
+
+  useEffect(() => {
+    setSelected(parseInt(value) || 0);
+  }, [value]);
+
+  const handleClick = (star) => {
+    if (!readonly) {
+      setSelected(star);
+      onChange(star);
+    }
+  };
 
   return (
-    <div className="stars">
+    <div
+      className={`stars ${
+        readonly ? "stars_readonly" : "stars_interactive"
+      }`}
+    >
       {[1, 2, 3, 4, 5].map((star) => (
-        <span
+        <i
           key={star}
-          className={star <= activeStars ? "star filled" : "star empty"}
-          onClick={() => !readonly && onChange(star)}
-          onMouseEnter={() => !readonly && setHovered(star)}
-          onMouseLeave={() => !readonly && setHovered(0)}
-          style={{ cursor: readonly ? "default" : "pointer" }}
-        >
-          ★
-        </span>
+          className={`bi ${
+            star <= selected ? "bi-star-fill filled" : "bi-star empty"
+          }`}
+          onClick={() => handleClick(star)}
+          style={{
+            cursor: readonly ? "default" : "pointer",
+            fontSize: "24px",
+            marginRight: "5px",
+          }}
+        ></i>
       ))}
     </div>
   );
@@ -55,7 +70,7 @@ function Feedback() {
       const data = await res.json();
 
       if (data.success) {
-        setFeedbackList(data.Feedback || []); // ✅ FIXED
+        setFeedbackList(data.feedback || []);
       } else {
         setFeedbackList([]);
       }
@@ -113,14 +128,23 @@ function Feedback() {
       <NavBar />
       <div className="feedback_page">
 
-        <h1 className="feedback_page_title">⭐ Feedback & Rating</h1>
+        <h1 className="feedback_page_title">
+          <i className="bi bi-star-fill me-2"></i>
+          Feedback & Rating
+        </h1>
         <p className="feedback_page_subtitle">Share your experience with our service</p>
 
         {successMsg && (
-          <div className="feedback_banner feedback_success">✅ {successMsg}</div>
+          <div className="feedback_banner feedback_success">
+            <i className="bi bi-check-circle-fill me-2"></i>
+            {successMsg}
+          </div>
         )}
         {error && (
-          <div className="feedback_banner feedback_error">⚠️ {error}</div>
+          <div className="feedback_banner feedback_error">
+            <i className="bi bi-exclamation-triangle-fill me-2"></i>
+            {error}
+          </div>
         )}
 
         <div className="feedback_page_form">
@@ -137,6 +161,7 @@ function Feedback() {
           />
 
           <button onClick={handleSubmit} disabled={submitting}>
+            <i className="bi bi-send-fill me-2"></i>
             {submitting ? "Submitting..." : "Submit Feedback"}
           </button>
         </div>
@@ -145,9 +170,15 @@ function Feedback() {
           <h2>Recent Feedback from Community</h2>
 
           {loading ? (
-            <p className="feedback_loading">Loading feedback...</p>
+            <p className="feedback_loading">
+              <i className="bi bi-arrow-repeat spin me-2"></i>
+              Loading feedback...
+            </p>
           ) : !feedbackList || feedbackList.length === 0 ? (
-            <p className="feedback_empty">No feedback yet. Be the first!</p>
+            <p className="feedback_empty">
+              <i className="bi bi-chat-left-text me-2"></i>
+              No feedback yet. Be the first!
+            </p>
           ) : (
             feedbackList.map((f) => (
               <div className="feedback_list" key={f.feedback_ID}>

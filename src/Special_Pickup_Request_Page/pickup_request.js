@@ -21,6 +21,7 @@ const STATUS_CLASS = {
     Rejected:  "sr_status_rejected",
 }
 
+
 function SpecialRequest() {
 
     const residentID = getResidentID();
@@ -115,12 +116,26 @@ return(
         <div className="sr_page">
 
 
-            <h1 className="sr_page_title">🚛 Special Garbage Pickup</h1>
+            <h1 className="sr_page_title">
+                <i className="bi bi-truck me-2"></i>
+                Special Garbage Pickup
+            </h1>
             <p className="sr_page_subtitle">Request a special collection for bulky or unusual items</p>
         
 
-        {successMsg && <div className="sr_banner sr_success">✅ {successMsg}</div>}
-        {error && <div className="sr_banner sr_error">⚠️ {error}</div>}
+            {successMsg && (
+            <div className="sr_banner sr_success">
+                <i className="bi bi-check-circle-fill me-2"></i>
+                {successMsg}
+            </div>
+            )}
+
+        {error && (
+        <div className="sr_banner sr_error">
+            <i className="bi bi-exclamation-triangle-fill me-2"></i>
+            {error}
+        </div>
+        )}
 
         {/* form card*/}
 
@@ -188,15 +203,48 @@ return(
                 requests.map((r) => (
                     <div className="sr_item" key={r.request_ID}>
                         <div className="sr_item_info">
-                            <h4>🗂️ {r.item_type}</h4>
-                            <p>📍 {r.address}, {r.location}</p>
-                            {r.description && <p>📝 {r.description}</p>}
-                            {r.schedule_date && (
-                                <p>📅 Scheduled: {r.schedule_date} {r.schedule_time ? `at ${r.schedule_time}` : ""}</p>
+                            <h4>
+                            <i className="bi bi-archive-fill me-2"></i>
+                            {r.item_type}
+                            </h4>
+                            <p>
+                            <i className="bi bi-geo-alt-fill me-2"></i>
+                            {r.address}, {r.location}
+                            </p>
+                            {r.description && (
+                            <p>
+                                <i className="bi bi-card-text me-2"></i>
+                                {r.description}
+                            </p>
                             )}
-                            <span>
-                                Requested: {r.request_date} at {r.request_time}
+                            {r.schedule_date && (
+                               <p>
+                            <i className="bi bi-calendar-event-fill me-2"></i>
+                            Scheduled: {r.schedule_date}
+                            {r.schedule_time ? ` at ${r.schedule_time}` : ""}
+                            </p>
+                            )}
+
+
+
+                           <span>
+                            <i className="bi bi-clock-history me-2"></i>
+                            Requested:{" "}
+                            {new Date(r.request_date).toLocaleDateString("en-GB", {
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric",
+                            })}{" "}
+                            at{" "}
+                            {new Date(`1970-01-01T${r.request_time}`).toLocaleTimeString([], {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                hour12: true,
+                            })}
                             </span>
+
+
+
                         </div>
                         <span className={`sr_status ${STATUS_CLASS[r.status] || "sr_status_pending"}`}>
                         {r.status || "Pending"}

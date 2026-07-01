@@ -31,7 +31,7 @@
   text-align: left;
   white-space: nowrap;
 }
-.asr_table tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
+.asr_table tbody tr { border-bottom: 1px solid #f0f0f0; }
 .asr_table tbody tr:hover      { background: #fafafa; }
 .asr_table tbody tr:last-child { border-bottom: none; }
 .asr_table td {
@@ -101,7 +101,7 @@
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  
 }
 .asr_btn_edit:hover { background: #fff3cd; }
 .asr_btn_delete {
@@ -113,7 +113,7 @@
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+
 }
 .asr_btn_delete:hover { background: #ffebee; }
 
@@ -241,7 +241,7 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+
 }
 .asr_btn_cancel:hover { background: #e2e2e2; }
 .asr_btn_save {
@@ -282,9 +282,18 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+
 }
 .asr_btn_confirm_delete:hover { background: #c62828; }
+
+.bi {
+  margin-right: 6px;
+}
+
+.asr_modal_close .bi,
+.clear_btn .bi {
+  margin-right: 0;
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {

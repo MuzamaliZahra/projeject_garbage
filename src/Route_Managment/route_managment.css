@@ -1,4 +1,4 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* { box-sizing: border-box; margin: 0; padding: 0; } */
 
 .mgr-page {
   min-height: 100vh;
@@ -12,33 +12,91 @@
   box-shadow: 0 2px 12px rgba(0,0,0,0.05);
 }
 
-.mgr-table { width: 100%; border-collapse: collapse; min-width: 950px; }
-.mgr-table thead tr { background: #f8f9fa; border-bottom: 2px solid #eee; }
-.mgr-table th {
-  padding: 13px 12px; font-size: 12px;
-  font-weight: 600; color: #555; text-align: left;
+.mgr-table { 
+  width: 100%; 
+  border-collapse: collapse;
+  min-width: 950px; 
 }
-.mgr-table tbody tr { border-bottom: 1px solid #f0f0f0; transition: background 0.15s; }
-.mgr-table tbody tr:hover { background: #fafafa; }
-.mgr-table tbody tr:last-child { border-bottom: none; }
-.mgr-table td { padding: 12px 12px; font-size: 13px; color: #333; }
+
+.mgr-table thead tr { 
+  background: #f8f9fa; 
+  border-bottom: 2px solid #eee; 
+}
+
+.mgr-table th {
+  padding: 13px 12px; 
+  font-size: 12px;
+  font-weight: 600; 
+  color: #555; 
+  text-align: left;
+}
+
+.mgr-table tbody tr {
+   border-bottom: 1px solid #f0f0f0; 
+}
+
+.mgr-table tbody tr:hover {
+   background: #fafafa; 
+}
+
+.mgr-table tbody tr:last-child {
+   border-bottom: none; 
+  }
+
+.mgr-table td { 
+  padding: 12px 12px; 
+  font-size: 13px; 
+  color: #333; 
+}
 
 .mgr-id-badge {
-  background: #e8f5e9; color: #1b5e20;
-  padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: #e8f5e9; 
+  color: #1b5e20;
+  padding: 4px 10px; 
+  border-radius: 20px; 
+  font-size: 12px; 
+  font-weight: 600;
 }
 
-.mgr-location-cell { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-.mgr-location-start { font-size: 12px; color: #1aaa6b; font-weight: 600; }
-.mgr-arrow { color: #999; font-size: 12px; }
-.mgr-location-end { font-size: 12px; color: #e8872a; font-weight: 600; }
+.mgr-location-cell { 
+  display: flex; 
+  align-items: center; 
+  gap: 5px; 
+  flex-wrap: wrap;
+ }
+
+.mgr-location-start { 
+  font-size: 12px; 
+  color: #1aaa6b; 
+  font-weight: 600; 
+}
+
+.mgr-arrow { 
+  color: #999; 
+  font-size: 12px; 
+}
+
+.mgr-location-end { 
+  font-size: 12px; 
+  color: #e8872a; 
+  font-weight: 600; 
+}
 
 .mgr-duration-badge {
-  background: #e3f2fd; color: #0d47a1;
-  padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  background: #e3f2fd; 
+  color: #0d47a1;
+  padding: 4px 10px; 
+  border-radius: 20px; 
+  font-size: 12px; 
+  font-weight: 600;
 }
 
-.mgr-driver-cell { display: flex; align-items: center; gap: 8px; }
+.mgr-driver-cell { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
 .mgr-driver-avatar {
   width: 32px; height: 32px; border-radius: 50%;
   background: #1aaa6b; color: #fff; font-size: 12px;
@@ -57,14 +115,14 @@
   background: #fff8e1; color: #f57f17;
   border: 1px solid #ffe082; border-radius: 7px;
   padding: 5px 10px; font-size: 12px;
-  font-weight: 600; cursor: pointer; transition: background 0.2s;
+  font-weight: 600; 
 }
 .mgr-btn-edit:hover { background: #fff3cd; }
 .mgr-btn-delete {
   background: #fdecea; color: #c62828;
   border: 1px solid #ffcdd2; border-radius: 7px;
   padding: 5px 10px; font-size: 12px;
-  font-weight: 600; cursor: pointer; transition: background 0.2s;
+  font-weight: 600; cursor: pointer; 
 }
 .mgr-btn-delete:hover { background: #ffebee; }
 
@@ -157,7 +215,7 @@
 }
 .mgr-btn-confirm-delete:hover { background: #c62828; }
 
-/* ── Driver Field Styles ── */
+/* Driver Field Styles  */
 .mgr-driver-placeholder {
   height: 44px; border: 1px dashed #ddd; border-radius: 8px;
   padding: 0 14px; font-size: 13px; color: #aaa;
@@ -187,7 +245,7 @@
   background: #fdecea; border: 1px solid #f5c6cb; border-radius: 8px;
 }
 
-/* ── Responsive ── */
+/* Responsive  */
 @media (max-width: 768px) {
   .mgr-stats-row { grid-template-columns: 1fr 1fr; }
   .mgr-page-header { flex-direction: column; align-items: flex-start; gap: 12px; }

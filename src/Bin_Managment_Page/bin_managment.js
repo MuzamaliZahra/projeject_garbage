@@ -5,9 +5,7 @@ import "./bin_managment.css";
 import "../extra_CSS_file.css";
 import AdminNavBar from "../Admin_Navigation_Bar/admin_navigation";
 function ManageBin() { 
-
     const navigate = useNavigate();
-
     const [bins, setBins] = useState([]);
     const [routes, setRoutes] = useState([]);
     const [qrCodes, setQrCodes]= useState([]);
@@ -15,14 +13,11 @@ function ManageBin() {
     const [loading, setLoading] = useState ("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-
     const [showModal, setShowModal] = useState(false);
     const [selectedBin, setSelectedBin] = useState(null);
     const [editData, setEditData] = useState({});
-
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState(null);
-
     // Fetch all bins
       const fetchBins = () => {
         setLoading(true);
@@ -45,7 +40,6 @@ function ManageBin() {
             .catch(() => 
                 console.log("Failed to load routes."));
     };
-
     // Fetch all QR codes
     const fetchQRCodes = () => {
         axios.get("http://localhost:5000/get-qrcodes")
@@ -54,14 +48,11 @@ function ManageBin() {
             .catch(() => 
                 console.log ("Failed to load QR codes"));
     };
-
     useEffect(() => {
         fetchBins();
         fetchRoutes();
         fetchQRCodes();
     }, []);
-    
-
     //Filter bins by search
     const filteredBins = bins.filter (b => 
         (b.bin_ID || "").toLowerCase().includes(search.toLowerCase()) ||
@@ -70,33 +61,29 @@ function ManageBin() {
         (b.route_ID || "").toLowerCase().includes(search.toLowerCase()) ||
         (b.status ||"").toLowerCase().includes(search.toLowerCase())
     );
-
-
-
     // Get route name by ID
-
     const getRouteName = (route_ID) => {
         const route = routes.find(r => r.route_ID === route_ID);
         return route ? route.route_name : route_ID;
     };
-
      // Bin type icon
-    const getBinIcon = (type) => {
-        if (type === "Recycling bins") return "♻️";
-        if (type === "Organic baste bins") return "🌿";
-        if (type === "Hazardous waste bins") return "☢️";
-        return "🗑️";
-    };
-
-
+   const getBinIcon = (type) => {
+    if (type === "Recycling bins") {
+        return <i className="bi bi-recycle"></i>;
+    }
+    if (type === "Organic baste bins") {
+        return <i className="bi bi-flower1"></i>;
+    }
+    if (type === "Hazardous waste bins") {
+        return <i className="bi bi-exclamation-octagon-fill"></i>;
+    }
+    return <i className="bi bi-trash-fill"></i>;
+};
     const formatDate = (d) => d? d.split("T")[0] : "-";
     const formatTime = (t) => t ? t.slice(0,5) : "-";
-
     //count by status
     const emptyCount = bins.filter(b => b.status === "Empty").length;
     const filledCount = bins.filter(b => b.status === "Filled").length;
-
-
     //Open edit modal
     const openEdit = (bin) => {
         setSelectedBin(bin);
@@ -108,17 +95,14 @@ function ManageBin() {
             QR_ID: bin.QR_ID,
             lst_clctn_date: bin.lst_clctn_date ? bin.lst_clctn_date.split("T")[0] : "",
             lst_clctn_time: bin.lst_clctn_time ? bin.lst_clctn_time.slice(0, 5) : "",
-       
         });
         setShowModal(true);
         setError("");
         setSuccess("");
     };
-
     const handleEditChange =(e) => {
         setEditData({...editData, [e.target.name]: e.target.value});
     };
-
     //submit edit
     const handleUpdate = () => {
         if (!editData.type || !editData.status || !editData.location ||
@@ -126,7 +110,6 @@ function ManageBin() {
         setError ("All fields are required");
         return;
      }
-
      axios.put(`http://localhost:5000/update-bin/${selectedBin.bin_ID}`, editData)
         .then(() => {
             setSuccess(`Bin "${selectedBin.bin_ID}" updated successfully!`);
@@ -135,11 +118,8 @@ function ManageBin() {
         })
         .catch(err => {
             setError(err.response?.data || "Error updating bin.");
-        });
-        
+        });  
     };
-
-
     //Open delete modal
     const openDelete = (bin) => {
         setDeleteTarget(bin);
@@ -176,7 +156,7 @@ function ManageBin() {
                     </div>
 
                     <button className="add_btn" onClick={() => navigate("/add_bin")}>
-                        ++ Add Bin
+                        + Add Bin
                     </button>
                 </div>
 
@@ -200,12 +180,21 @@ function ManageBin() {
 
                 {/* Alerts */}
 
-                {error && <div className="alert alert_error">⚠ {error}</div>}
-                {success && <div className="alert alert_success">✓ {success}</div>}
+                {error && (
+                    <div className="alert alert_error">
+                        <i className="bi bi-exclamation-triangle-fill"></i> {error}
+                    </div>
+                    )}
+
+                    {success && (
+                    <div className="alert alert_success">
+                        <i className="bi bi-check-circle-fill"></i> {success}
+                    </div>
+                    )}
 
                 {/*search bar*/}
                 <div className="search_bar">
-                    <span className="search_icon">🔍</span>
+                    <span className="search_icon"><i className="bi bi-search"></i></span>
                     <input 
                         type="text"
                         placeholder="Search by bin ID, type, location, route or status..."
@@ -214,7 +203,7 @@ function ManageBin() {
                     />
 
                     {search && (
-                        <button className="clear_btn" onClick={() => setSearch("")}>✕</button>
+                        <button className="clear_btn" onClick={() => setSearch("")}> <i className="bi bi-x-lg"></i></button>
                     )}
                 </div>
 
@@ -224,7 +213,7 @@ function ManageBin() {
                         <div className="loading">Loading bins...</div>
                     ): filteredBins.length === 0 ? (
                         <div className="empty">
-                            <div className="empty_icon">🗑️</div>
+                            <div className="empty_icon"><i className="bi bi-trash3-fill"></i></div>
                             <p>No bins found</p>
                             <span>Try a different search or add a new bin</span>
                         </div>
@@ -270,13 +259,25 @@ function ManageBin() {
                                         </td>
 
                                         <td>
-                                            <span className="bm_qr_badge">📱 {bin.QR_ID}</span>
+                                            <span className="bm_qr_badge"><i className="bi bi-qr-code-scan"></i> {bin.QR_ID}</span>
                                         </td>
 
                                         <td>
-                                            <span className={`bm_status_badge ${bin.status === "Empty" ? "empty" : "filled"}`}>
-                                                {bin.status === "Empty" ? "🟢 Empty" : "🔴 Filled"}
-                                            </span>
+                                            <span
+                                                className={`bm_status_badge ${
+                                                    bin.status === "Empty" ? "empty" : "filled"
+                                                }`}
+                                                >
+                                                {bin.status === "Empty" ? (
+                                                    <>
+                                                    <i className="bi bi-circle-fill"></i> Empty
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                    <i className="bi bi-circle-fill"></i> Filled
+                                                    </>
+                                                )}
+                                                </span>
                                         </td>
 
                                         <td>
@@ -284,11 +285,11 @@ function ManageBin() {
                                                 {bin.lst_clctn_date || bin.lst_clctn_time ? (
                                                     <>
                                                         <div className="bm_collection_date">
-                                                            📅 {formatDate(bin.lst_clctn_date)}
+                                                            <i className="bi bi-calendar-event"></i> {formatDate(bin.lst_clctn_date)}
                                                         </div>
 
                                                         <div className="bm_collection_time">
-                                                            🕐 {formatTime(bin.lst_clctn_time)}
+                                                            <i className="bi bi-clock"></i> {formatTime(bin.lst_clctn_time)}
                                                         </div>
                                                     </>
                                                 
@@ -302,11 +303,11 @@ function ManageBin() {
                                         <td>
                                             <div className="action_btns">
                                                 <button className="btn_edit" onClick={() => openEdit(bin)}>
-                                                      ✏ Edit
+                                                       <i className="bi bi-pencil-square"></i>
                                                 </button>
 
                                                 <button className="btn_delete" onClick={() => openDelete(bin)}>
-                                                    🗑 Delete
+                                                   <i className="bi bi-trash-fill"></i>
                                                 </button>
                                             </div>
                                         </td>
@@ -331,7 +332,7 @@ function ManageBin() {
                         
                         <div className="bm_modal_header">
                             <h3>Edit Bin</h3>
-                            <button className="bm_modal_close" onClick={() => setShowModal(false)}>✕</button>
+                            <button className="bm_modal_close" onClick={() => setShowModal(false)}> <i className="bi bi-x-lg"></i></button>
                         </div>
 
                         <div className="bm_modal_bin_icon">
@@ -339,7 +340,7 @@ function ManageBin() {
                             <span>Bin ID: {selectedBin?.bin_ID}</span>
                         </div>
 
-                        {error && <div className="bm_alert bm_alert_error" style={{margin: "0.1.5 rem"}}>⚠ {error}</div>}
+                        {error && <div className="bm_alert bm_alert_error" style={{margin: "0.1.5 rem"}}> <i className="bi bi-exclamation-triangle-fill"></i>{error}</div>}
 
                         <div className="bm_modal_body">
                             {/*Type & status*/}
@@ -348,17 +349,17 @@ function ManageBin() {
                                     <label>Bin Type</label>
                                     <select name="type" value={editData.type} onChange={handleEditChange}>
                                         <option value="">--- Select Type--- </option>
-                                        <option value="Recycling bins">♻️ Recycling Bins</option>
-                                        <option value="Organic baste bins">🌿 Organic Waste Bins</option>
-                                        <option value="Hazardous waste bins">☢️ Hazardous Waste Bins</option>
+                                        <option value="Recycling bins"> Recycling Bins</option>
+                                        <option value="Organic baste bins"> Organic Waste Bins</option>
+                                        <option value="Hazardous waste bins"> Hazardous Waste Bins</option>
                                     </select>
                                 </div>
                                 <div className="bm_form_group">
                                     <label>Status</label>
                                     <select name="status" value={editData.status} onChange={handleEditChange}>
                                         <option value="">-- Select Status --</option>
-                                        <option value="Empty">🟢 Empty</option>
-                                        <option value="Filled">🔴 Filled</option>
+                                        <option value="Empty"> Empty</option>
+                                        <option value="Filled">Filled</option>
                                     </select>
                                 </div>
                             </div>
@@ -382,7 +383,7 @@ function ManageBin() {
                                 <option value="">--Select Route--</option>
                                 {routes.map(route => (
                                     <option key= {route.route_ID} value={route.route_ID}>
-                                       📍 {route.route_name} - {route.route_ID}
+                                        {route.route_name} - {route.route_ID}
                                     </option>
                                 ))}
                                 </select>
@@ -395,14 +396,14 @@ function ManageBin() {
                                     <option value="">--Select QR Code--</option>
                                     {qrCodes.map(qr => (
                                         <option key={qr.QR_id} value={qr.QR_id}>
-                                            📱 {qr.QR_id}
+                                             {qr.QR_id}
                                         </option>
                                     ))}
                                 </select>
                             </div>   
                                         
                              <div className="bm_collection_section">
-                                    <div className="bm_collection_label">📋 Last Collection Info</div>
+                                    <div className="bm_collection_label"> <i className="bi bi-card-checklist"></i> Last Collection Info</div>
                                     <div className="bm_modal_row">
                                         <div className="bm_form_group">
                                             <label>Last Collection Date</label>
@@ -444,11 +445,11 @@ function ManageBin() {
                         
                             <div className="bm_modal_header">
                                 <h3>Delete Bin</h3>
-                                <button className="bm_modal_close" onClick={() => setShowDeleteModal(false)}>✕</button>
+                                <button className="bm_modal_close" onClick={() => setShowDeleteModal(false)}><i className="bi bi-x-lg"></i></button>
                             </div>
 
                             <div className="bm_delete_body">
-                                <div className="bm_delete_icon">🗑️</div>
+                                <div className="bm_delete_icon"><i className="bi bi-trash3-fill"></i></div>
                                 <p>Are you sure you want to delete</p>
                                 <strong>"{deleteTarget?.bin_ID}"</strong>
                                 <span>{deleteTarget?.location}</span>

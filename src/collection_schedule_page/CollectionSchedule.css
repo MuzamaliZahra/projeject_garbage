@@ -16,35 +16,6 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* TITLE */
-.schedule_Page_title {
-  text-align: center;
-  font-size: 32px;
-  font-weight: 700;
-  color: #111827;
-}
-
-.schedule_Page_subtitle {
-  text-align: center;
-  color: #6b7280;
-  font-size: 15px;
-  margin-top: -15px;
-}
-
-/* AREA CARD */
-.area_part {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-}
-
-.area_name {
-  font-size: 22px;
-  margin-bottom: 25px;
-  color: #0b7a5a;
-}
-
 /* TIME CARD */
 .Time_Date {
   display: flex;
@@ -58,34 +29,6 @@
   transition: 0.3s ease;
 }
 
-.Time_Date:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-.Time_Date h3 {
-  font-size: 17px;
-  color: #111827;
-  margin-bottom: 6px;
-}
-
-.Time_Date p {
-  font-size: 14px;
-  color: #4b5563;
-  margin-top: 4px;
-}
-
-/* STATUS */
-.status {
-  background: #d1fae5;
-  color: #065f46;
-  padding: 7px 14px;
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: capitalize;
-  white-space: nowrap;
-}
 
 /* NOTIFICATION */
 .notification {
@@ -138,11 +81,6 @@
   border-bottom: 1px solid #e5e7eb;
   font-size: 14px;
   color: #374151;
-}
-
-/* TABLE ROW */
-.schedule_table tbody tr {
-  transition: background 0.2s ease;
 }
 
 .schedule_table tbody tr:hover {

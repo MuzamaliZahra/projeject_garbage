@@ -5,10 +5,11 @@ import {
   faMagnifyingGlass,faUser,faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import "./admin_navigation.css";
+import { useNavigate } from "react-router-dom";
 
 function AdminNavbar() {
 
- 
+  const navigate = useNavigate(); 
 
   return (
     <nav className="navbar">
@@ -93,7 +94,7 @@ function AdminNavbar() {
             </NavDropdown.Item>
             
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/logout" className="logoutItem">
+            <NavDropdown.Item onClick={() => navigate("/login")} className="logoutItem">
               <FontAwesomeIcon icon={faRightFromBracket} className="me-2" /> Logout
             </NavDropdown.Item>
           </NavDropdown>
